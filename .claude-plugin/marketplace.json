@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "llm-plugins",
+  "version": "2.0.0",
+  "description": "Collection of plugins for claude code",
+  "owner": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com"
+  },
+  "plugins": [
+    {
+      "name": "house-style",
+      "description": "House style for software development",
+      "version": "1.0.0",
+      "source": "./plugins/house-style",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
+    }
+  ]
+}
