@@ -21,7 +21,7 @@
     {
       "name": "tooling",
       "description": "Skills for effective use of developer tooling",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./plugins/tooling",
       "author": {
         "name": "PBD",
