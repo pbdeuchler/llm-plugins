@@ -17,6 +17,16 @@
         "name": "PBD",
         "email": "pbdeuchler@gmail.com"
       }
+    },
+    {
+      "name": "tooling",
+      "description": "Skills for effective use of developer tooling",
+      "version": "0.1.0",
+      "source": "./plugins/tooling",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
     }
   ]
 }
