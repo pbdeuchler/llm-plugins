@@ -6,6 +6,10 @@ Largely stolen from [ed3d-plugins](https://github.com/ed3dai/ed3d-plugins) and e
 
 Development guides per my tastes
 
+### one-shot
+
+A one shot workflow that gets it done with high standards of quality
+
 ## Installation
 
 ### Add the marketplace
