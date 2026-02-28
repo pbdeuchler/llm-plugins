@@ -32,7 +32,7 @@
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
       "version": "0.1.0",
-      "source": "./plugins/tooling",
+      "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
         "email": "pbdeuchler@gmail.com"
