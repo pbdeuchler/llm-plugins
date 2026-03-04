@@ -44,7 +44,7 @@ If any of these steps fail, stop and report the error to the user.
 
 ## Execute
 
-1. **Engage the skill:** Use your Skill tool to invoke `execute-one-shot`
+1. **Engage the skill:** Use your Skill tool to invoke `one-shot:execute-one-shot`
 2. **If the skill asks for a plan path:** The user has already provided it: `$1`. Do not ask again.
 
 The skill should execute everything in that file, no more and no less. Follow it exactly as written.

@@ -5,9 +5,9 @@ description: Use for executing implementation plans
 
 # Executing an Implementation Plan
 
-Execute an implementation plan. Split the implementation plan into _no more than 5 steps_. Flesh out each step as if you were passing it to a junior developer. The goal here is very high quality code, architecture, and design. If the plan is too big or too ill defined or vague to do so immediately exit and report why with some recommendations on how to improve the plan.
+Execute an implementation plan. The goal here is very high quality code, architecture, and design. Split the implementation plan into _no more than 5 steps_. Flesh out each step as if you were passing it to a junior developer. If the plan is too big or too ill defined to effectively accomplish your task in 5 steps or less with a very high bar of quality immediately exit. Report why with some recommendations on how to improve the plan.
 
-**Core principle:** Read one step → execute all tasks → review → move to next step.
+**Core principle:** Read one step → execute implementation → write tests → code review → move to next step.
 
 **REQUIRED SKILL:** `requesting-code-review` - The review loop (dispatch, fix, re-review until zero issues)
 
@@ -38,7 +38,7 @@ After EVERY subagent completes (task-implementor, bug-fixer, code-reviewer), you
 
 ## REQUIRED: Implementation Plan Path
 
-**DO NOT GUESS.** If the user has not provided a path to an implementation plan directory, you MUST ask for it.
+**DO NOT GUESS.** If the user has not provided a path to an implementation plan, you MUST ask for it.
 
 Use AskUserQuestion:
 
@@ -49,7 +49,7 @@ Options:
   - "Let me provide the path"
 ```
 
-If `docs/implementation-plans/` doesn't exist or is empty, ask the user to provide the path directly.
+If `docs/plans/` doesn't exist or is empty, ask the user to provide the path directly.
 
 **Never assume, infer, or guess which plan to execute.** The user must explicitly tell you.
 
@@ -83,7 +83,7 @@ Mark "Step Na: Implementation" as in_progress and dispatch `task-implementor` to
 
 ```
 <invoke name="Task">
-<parameter name="subagent_type">one-shot:task-implementor-fast</parameter>
+<parameter name="subagent_type">one-shot:task-implementer</parameter>
 <parameter name="description">Implementing Step X, Task Y: [description]</parameter>
 <parameter name="prompt">
 
@@ -95,11 +95,11 @@ Mark "Step Na: Implementation" as in_progress and dispatch `task-implementor` to
 
 #### 2b. Write tests and verify correctness
 
-Mark "Step Na: Implementation" as in_progress and dispatch `task-implementor` to begin.
+Mark "Step Nb: Tests and Verification" as in_progress and dispatch `task-implementor` to begin.
 
 ```
 <invoke name="Task">
-<parameter name="subagent_type">one-shot:task-implementor-fast</parameter>
+<parameter name="subagent_type">one-shot:task-implementer</parameter>
 <parameter name="description">Implementing Step X, Task Y: [description]</parameter>
 <parameter name="prompt">
 
