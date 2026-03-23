@@ -7,94 +7,68 @@ description: Set up and run an autonomous experiment loop for any optimization t
 
 Autonomous experiment loop: try ideas, keep what works, discard what doesn't, never stop.
 
-## Tools
+**Architecture:** The main thread is a lightweight loop controller. Each experiment iteration runs in an `experiment-runner` subagent to keep the main context clean and unbounded.
 
-- **`init_experiment`** — configure session (name, metric, unit, direction). Call again to re-initialize with a new baseline when the optimization target changes.
-- **`run_experiment`** — runs command, times it, captures output.
-- **`log_experiment`** — records result. `keep` auto-commits. `discard`/`crash`/`checks_failed` auto-reverts code changes (autoresearch files preserved). Always include secondary `metrics` dict.
+## Sub-Skills (Reference)
 
-## Setup
+These skills contain detailed protocols. The `experiment-runner` subagent follows them directly. The main thread references them only when needed for setup or recovery:
 
-1. Ask (or infer): **Goal**, **Command**, **Metric** (+ direction), **Files in scope**, **Constraints**.
-2. `git checkout -b autoresearch/<goal>-<date>`
-3. Read the source files. Understand the workload deeply before writing anything.
-4. Write `autoresearch.md` and `autoresearch.sh` (see below). Commit both.
-5. `init_experiment` → run baseline → `log_experiment` → start looping immediately.
+- **`autoresearch:confidence-scoring`** — MAD-based confidence computation and interpretation.
+- **`autoresearch:experiment-git-ops`** — Git commit/revert patterns with protected files.
+- **`autoresearch:metric-extraction`** — METRIC line parsing, unit inference, tracking.
+- **`autoresearch:session-persistence`** — JSONL logging, session init/resume, segment tracking.
 
-### `autoresearch.md`
+## Phase 1: Setup (Main Thread)
 
-This is the heart of the session. A fresh agent with no context should be able to read this file and run the loop effectively. Invest time making it excellent.
+Run once at session start. This is the only phase where the main thread does heavy file work.
+
+1. **Gather parameters.** Ask (or infer): Goal, Command, Metric (+ direction), Files in scope, Constraints.
+2. **Branch.** `git checkout -b autoresearch/<goal>-<YYYY-MM-DD>`
+3. **Read source files.** Understand the workload deeply before writing anything.
+4. **Write `autoresearch.md`.** The heart of the session (see template below).
+5. **Write `autoresearch.sh`.** Benchmark script outputting `METRIC name=value` lines.
+6. **Write `autoresearch.checks.sh`** (only if constraints require correctness validation).
+7. **Commit** all autoresearch files.
+8. **Write config header** to `autoresearch.jsonl`:
+   ```json
+   {"type":"config","name":"<session>","metricName":"<name>","metricUnit":"<unit>","bestDirection":"<lower|higher>"}
+   ```
+9. **Record start timestamp**: `date +%s` — store for duration limit checks.
+10. **Run baseline** via the first subagent dispatch (see Phase 2). The baseline description should be "Baseline measurement".
+
+### `autoresearch.md` Template
 
 ```markdown
 # Autoresearch: <goal>
 
 ## Objective
-
 <Specific description of what we're optimizing and the workload.>
 
 ## Metrics
-
 - **Primary**: <name> (<unit>, lower/higher is better) — the optimization target
 - **Secondary**: <name>, <name>, ... — independent tradeoff monitors
 
 ## How to Run
-
 `./autoresearch.sh` — outputs `METRIC name=number` lines.
 
 ## Files in Scope
-
 <Every file the agent may modify, with a brief note on what it does.>
 
 ## Off Limits
-
 <What must NOT be touched.>
 
 ## Constraints
-
 <Hard rules: tests must pass, no new deps, etc.>
 
 ## What's Been Tried
-
-<Update this section as experiments accumulate. Note key wins, dead ends,
-and architectural insights so the agent doesn't repeat failed approaches.>
+<Update as experiments accumulate — key wins, dead ends, architectural insights.>
 ```
-
-Update `autoresearch.md` periodically — especially the "What's Been Tried" section — so resuming agents have full context.
 
 ### `autoresearch.sh`
 
-Bash script (`set -euo pipefail`) that: pre-checks fast (syntax errors in <1s), runs the benchmark, and outputs structured lines to stdout. Keep the script fast — every second is multiplied by hundreds of runs.
-
-**For fast, noisy benchmarks** (< 5s), run the workload multiple times inside the script and report the median. This produces stable data points and makes the confidence score reliable from the start. Slow workloads (ML training, large builds) don't need this — single runs are fine.
-
-#### Structured output
-
-- `METRIC name=value` — primary metric (must match `init_experiment`'s `metric_name`) and any secondary metrics. Parsed automatically by `run_experiment`.
-
-#### Design the script to inform optimization
-
-The script should output **whatever data helps you make better decisions in the next iteration.** Think about what you'll need to see after each run to know where to focus:
-
-- Phase timings when the workload has distinct stages
-- Error counts, failure categories, or test names when checks can fail in different ways
-- Memory usage, cache hit rates, or other runtime diagnostics when relevant
-- Anything domain-specific that would help localize regressions or identify bottlenecks
-
-The script runs the same code every iteration — but you can **update it during the loop** if you discover you need more signal. Add instrumentation as you learn what matters.
-
-#### Agent-supplied ASI via `log_experiment`
-
-Use `log_experiment`'s `asi` parameter to annotate each run with **whatever would help the next iteration make a better decision.** Free-form key/value pairs — you decide what's worth recording. Don't repeat the description or raw output; capture what you'd lose after a context reset.
-
-**Annotate failures and crashes heavily.** Discarded and crashed runs are reverted — the code changes are gone. The only record that survives is the description and ASI in `autoresearch.jsonl`. If you don't capture what you tried and why it failed, future iterations will waste time re-discovering the same dead ends.
+Bash script (`set -euo pipefail`) that pre-checks fast, runs the benchmark, and outputs structured `METRIC name=value` lines. For fast noisy benchmarks (<5s), run multiple times and report median.
 
 ### `autoresearch.config.json` (optional)
-
-JSON config file that lives in the current session's working directory (`ctx.cwd`). Supported fields:
-
-- **`maxIterations`** (number) — maximum experiments before auto-stopping.
-- **`maxDurationMinutes`** (number) — wall clock time limit in minutes. Record `Date.now()` at session start. Before each iteration, check elapsed time. When exceeded, execute graceful shutdown (see below). Useful as a budget proxy when you want to cap how much plan quota a session consumes.
-- **`workingDir`** (string) — override the directory for all autoresearch operations: file I/O (`autoresearch.jsonl`, `autoresearch.md`, `autoresearch.sh`, `autoresearch.checks.sh`, `autoresearch.ideas.md`), command execution, and git operations. Supports absolute paths or relative paths (resolved against `ctx.cwd`). The config file itself always stays in `ctx.cwd`. Fails if the directory doesn't exist.
 
 ```json
 {
@@ -104,61 +78,173 @@ JSON config file that lives in the current session's working directory (`ctx.cwd
 }
 ```
 
-### `autoresearch.checks.sh` (optional)
+## Phase 2: Loop (Main Thread as Controller)
 
-Bash script (`set -euo pipefail`) for backpressure/correctness checks: tests, types, lint, etc. **Only create this file when the user's constraints require correctness validation** (e.g., "tests must pass", "types must check").
+The main thread is a **strategy controller**. It decides what to try, dispatches a subagent to execute it, and processes the result. The main thread NEVER modifies source files or runs benchmarks directly.
 
-When this file exists:
+**CONTINUE LOOPING UNTIL EITHER USER INTERRUPT OR TIME/ITERATION LIMIT.** Never ask "should I continue?"
 
-- Runs automatically after every **passing** benchmark in `run_experiment`.
-- If checks fail, `run_experiment` reports it clearly — log as `checks_failed`.
-- Its execution time does **NOT** affect the primary metric.
-- You cannot `keep` a result when checks have failed.
-- Has a separate timeout (default 300s, configurable via `checks_timeout_seconds`).
+### Loop Iteration
 
-When this file does **not** exist, everything behaves exactly as before — no changes to the loop.
-
-**Keep output minimal.** Only the last 80 lines of checks output are fed back to the agent on failure. Suppress verbose progress/success output and let only errors through. This keeps context lean and helps the agent pinpoint what broke.
-
-```bash
-#!/bin/bash
-set -euo pipefail
-# Example: run tests and typecheck — suppress success output, only show errors
-pnpm test --run --reporter=dot 2>&1 | tail -50
-pnpm typecheck 2>&1 | grep -i error || true
+```
+┌─────────────────────────────────────────────┐
+│  MAIN THREAD (controller)                   │
+│                                             │
+│  1. Check stop conditions                   │
+│  2. Read recent state (JSONL tail + ideas)  │
+│  3. Decide hypothesis for next experiment   │
+│  4. Dispatch experiment-runner subagent      │
+│  5. Parse result block from subagent        │
+│  6. Update strategy based on result         │
+│  7. Every 5 runs: update autoresearch.md    │
+│  8. Go to 1                                 │
+└─────────────────────────────────────────────┘
+         │
+         ▼  (dispatch)
+┌─────────────────────────────────────────────┐
+│  SUBAGENT: experiment-runner                │
+│                                             │
+│  - Reads files, implements changes          │
+│  - Runs benchmark + checks                  │
+│  - Evaluates metrics, computes confidence   │
+│  - Logs to JSONL                            │
+│  - Commits or reverts git state             │
+│  - Returns structured result block          │
+└─────────────────────────────────────────────┘
 ```
 
-## Loop Rules
+### Step 1: Check Stop Conditions
 
-**CONTINUE LOOPING UNTIL EITHER USER INTERRUPT OR TIME LIMIT.** Never ask "should I continue?" — the user expects autonomous work.
+Before each iteration:
+- If `maxIterations` is set and reached → graceful shutdown.
+- Run `date +%s`, compare to start timestamp. If `maxDurationMinutes` exceeded → graceful shutdown.
 
-- **Check stop conditions before each iteration.** If `maxIterations` is set and reached, or `maxDurationMinutes` is set and wall clock time since session start exceeds it, execute graceful shutdown. Check elapsed time by running `date +%s` and comparing to the start timestamp you recorded at init.
-- **Primary metric is king.** Improved → `keep`. Worse/equal → `discard`. Secondary metrics rarely affect this.
-- **Annotate every run with `asi`.** Record what you learned — not what you did. What would help the next iteration or a fresh agent resuming this session?
-- **Watch the confidence score.** After 3+ runs, `log_experiment` reports a confidence score (best improvement as a multiple of the session noise floor). ≥2.0× means the improvement is likely real. <1.0× means it's within noise — consider re-running to confirm before keeping. The score is advisory — it never auto-discards.
+### Step 2: Read Recent State
+
+Read the **last 10 lines** of `autoresearch.jsonl` to understand recent results. Also check `autoresearch.ideas.md` for queued ideas. This is lightweight — do NOT re-read the entire file each iteration.
+
+### Step 3: Decide Hypothesis
+
+Based on accumulated results, decide what to try next. This is where the main thread's strategic value lives:
+
+- **After a `keep`:** Build on the improvement. What's the next bottleneck?
+- **After a `discard`:** Try a structurally different approach. Don't thrash on the same idea.
+- **After a `crash`:** Fix if trivial, otherwise skip and try something else.
+- **After 3+ consecutive discards:** Step back. Re-read source files. Think about what the CPU/runtime is actually doing.
+- **Confidence < 1.0×:** Recent "improvements" may be noise. Try larger, more impactful changes.
+- **Ideas backlog:** Pull from `autoresearch.ideas.md` when you need fresh directions.
+
+### Step 4: Dispatch Subagent
+
+Spawn `autoresearch:experiment-runner` with a prompt containing all context needed for one iteration:
+
+<invoke name="Agent">
+<parameter name="subagent_type">autoresearch:experiment-runner</parameter>
+<parameter name="description">Run #N: brief hypothesis</parameter>
+<parameter name="prompt">
+## Experiment Context
+
+- **Run number**: {N}
+- **Working directory**: {working_dir}
+- **Primary metric**: {metric_name} ({unit}, {direction} is better)
+- **Baseline**: {baseline_value}
+- **Best so far**: {best_value} (run #{best_run})
+- **Current segment**: {segment}
+
+## Hypothesis
+
+{What to try and why — be specific about which files to change and what changes to make.}
+
+## Files in Scope
+
+{Copy from autoresearch.md — every file the agent may modify.}
+
+## Off Limits
+
+{Copy from autoresearch.md.}
+
+## Constraints
+
+{Copy from autoresearch.md.}
+
+## Recent History (last 5 runs)
+
+{Formatted summary: run#, status, metric, description, asi — from JSONL tail.}
+</parameter>
+</invoke>
+
+**Keep the prompt concise.** The subagent doesn't need the full session history — just enough to execute one iteration well.
+
+### Step 5: Parse Result
+
+The subagent ends with a `result` block:
+
+```
+status: keep|discard|crash|checks_failed
+metric: <value>
+confidence: <score_or_null>
+commit: <hash_or_empty>
+description: <what was tried>
+asi: <what was learned>
+secondary: key1=val1 key2=val2
+```
+
+Parse these fields to update your running state.
+
+### Step 6: Update Strategy
+
+Print a one-line summary to the user:
+
+```
+Run #5: keep | total_µs: 14,600 (-3.8%) | confidence: 2.3× | "Inline hot loop"
+```
+
+Adjust your internal strategy:
+- Track consecutive discards/crashes.
+- Note patterns in ASI across runs.
+- Add deferred ideas to `autoresearch.ideas.md`.
+
+### Step 7: Periodic Maintenance
+
+Every **5 runs**, update `autoresearch.md`:
+- Refresh "What's Been Tried" with key wins, dead ends, and architectural insights.
+- Commit the updated file.
+
+This ensures a fresh agent (or context recovery) has current state.
+
+## Phase 3: Graceful Shutdown (Main Thread)
+
+When a stop condition is reached:
+
+1. **Wait for current subagent** to finish — don't abandon a running experiment.
+2. **Update `autoresearch.md`** with final state, total iterations, best result, promising unexplored ideas.
+3. **Commit** all autoresearch files.
+4. **Print summary:**
+   - Iterations completed
+   - Best result (metric value + description + commit hash)
+   - Elapsed time
+   - Reason for stopping
+
+## Resuming a Session
+
+When `autoresearch.md` exists (resume scenario):
+
+1. Read `autoresearch.md` for session context.
+2. Read `autoresearch.jsonl` to reconstruct state (see `session-persistence` skill):
+   - Find current segment, baseline, best kept, run count.
+3. Read `autoresearch.ideas.md` for queued ideas.
+4. Check git log for recent commits.
+5. Record new start timestamp for duration tracking.
+6. **Resume looping** from Phase 2.
+
+## Strategy Guidelines
+
+- **Primary metric is king.** Improved → keep. Worse/equal → discard. Secondary metrics are informational.
 - **Simpler is better.** Removing code for equal perf = keep. Ugly complexity for tiny gain = probably discard.
-- **Don't thrash.** Repeatedly reverting the same idea? Try something structurally different.
-- **Crashes:** fix if trivial, otherwise log and move on. Don't over-invest.
-- **Think longer when stuck.** Re-read source files, study the profiling data, reason about what the CPU is actually doing. The best ideas come from deep understanding, not from trying random variations.
-- **Resuming:** if `autoresearch.md` exists, read it + git log, continue looping.
-
-**NEVER STOP UNTIL USER INTERRUPTION OR TIME/ITERATION LIMIT.** The user may be away for hours. Keep going until interrupted or a configured limit is reached.
-
-## Graceful Shutdown
-
-When a stop condition is reached (time limit, iteration limit, or unrecoverable error), shut down cleanly:
-
-1. **Finish the current cycle.** Complete the in-progress `run_experiment` + `log_experiment` pair. Do not abandon a running experiment.
-2. **Update `autoresearch.md`.** Write final state to the "What's Been Tried" section — include the best result, total iterations, and any promising unexplored ideas.
-3. **Commit all autoresearch files.** Stage and commit `autoresearch.md`, `autoresearch.jsonl`, `autoresearch.ideas.md` (if exists), and any kept code changes.
-4. **Print summary.** Report: iterations completed, best result (metric value + description), elapsed time, and reason for stopping.
-
-## Ideas Backlog
-
-When you discover complex but promising optimizations that you won't pursue right now, **append them as bullets to `autoresearch.ideas.md`**. Don't let good ideas get lost.
-
-On resume (context limit, crash), check `autoresearch.ideas.md` — prune stale/tried entries, experiment with the rest. When all paths are exhausted, delete the file and write a final summary.
+- **Don't thrash.** Same idea failing repeatedly → try something structurally different.
+- **Think longer when stuck.** Re-read source files, study profiling data, reason about what the workload actually does. The best ideas come from deep understanding, not random variation.
+- **Annotate heavily.** The main thread accumulates ASI across runs — this is your institutional memory. Use it to avoid repeating dead ends.
 
 ## User Messages During Experiments
 
-If the user sends a message while an experiment is running, finish the current `run_experiment` + `log_experiment` cycle first, then incorporate their feedback in the next iteration. Don't abandon a running experiment.
+If the user sends a message while a subagent is running, wait for the subagent to finish, then incorporate their feedback into the next hypothesis.

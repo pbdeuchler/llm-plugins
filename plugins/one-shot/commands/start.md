@@ -22,7 +22,7 @@ The first argument MUST be an absolute path. Verify it exists:
    git -C "$2" rev-parse --git-dir
    ```
 
-2. If $2 (seed commitish) was provided: Verify the commitish exists and check out to it:
+2. If $2 (seed commitish) was provided verify the committish exists and check out to it. If not, take note of the current branch you are in:
 
    ```bash
    git checkout $2
@@ -34,7 +34,7 @@ The first argument MUST be an absolute path. Verify it exists:
    test -f "$1"
    ```
 
-4. Checkout a new branch from the seed committish if provided, else from the current HEAD. This branch should have a randomized, human readable name:
+4. Checkout a new branch from the current HEAD (which should be the seed committish if provided). This branch should have a randomized, human readable name:
 
    ```bash
    git checkout -b lazy-koala-fence
@@ -51,4 +51,6 @@ The skill should execute everything in that file, no more and no less. Follow it
 
 ### Once the skill has completed
 
-3. **IF YOU ARE WITHIN A GITHUB ACTIONS WORKFLOW:** Identify the git branch that triggered this workflow. Using the `gh` cli tool create a PR with the base as the git branch you just identified, and the compare the new branch that contains the implementation. Set the PR description to the output provided by the `execute-one-shot` skill. If you hit content length limits summarize appropriately.
+3. Spin up the one-shot:holistic-reviewer agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review. Do a final code review and address ALL issues. Do not complete until all issues have been addressed.
+
+4. If a seed committish was provided and it is a branch create a PR with that branch as the base and the new implementation branch as the compare. If a seed committish was NOT provided then use the original branch you were initialized in as the base. Create a thoughtful description, summarizing what you were initially asked to do in the implementation plan, what you did to complete the task, and why. Make sure to include any tradeoffs, design decisions, or complications that arose. Finally include a quick summary of anything a reviewer should care about when looking at test changes. Ensure throughout the PR description to emphasize anything that reviewers should pay special attention to. Use the `gh` cli tool to interact with GitHub.
