@@ -11,7 +11,7 @@ Autonomous experiment loop: try ideas, keep what works, discard what doesn't, ne
 
 - **`init_experiment`** — configure session (name, metric, unit, direction). Call again to re-initialize with a new baseline when the optimization target changes.
 - **`run_experiment`** — runs command, times it, captures output.
-- **`log_experiment`** — records result. `keep` auto-commits. `discard`/`crash`/`checks_failed` auto-reverts code changes (autoresearch files preserved). Always include secondary `metrics` dict. Dashboard: ctrl+x.
+- **`log_experiment`** — records result. `keep` auto-commits. `discard`/`crash`/`checks_failed` auto-reverts code changes (autoresearch files preserved). Always include secondary `metrics` dict.
 
 ## Setup
 
@@ -128,7 +128,7 @@ pnpm typecheck 2>&1 | grep -i error || true
 
 ## Loop Rules
 
-**LOOP FOREVER.** Never ask "should I continue?" — the user expects autonomous work.
+**CONTINUE LOOPING UNTIL EITHER USER INTERRUPT OR PREDETERMINED TIME LIMIT.** Never ask "should I continue?" — the user expects autonomous work.
 
 - **Primary metric is king.** Improved → `keep`. Worse/equal → `discard`. Secondary metrics rarely affect this.
 - **Annotate every run with `asi`.** Record what you learned — not what you did. What would help the next iteration or a fresh agent resuming this session?
@@ -139,7 +139,7 @@ pnpm typecheck 2>&1 | grep -i error || true
 - **Think longer when stuck.** Re-read source files, study the profiling data, reason about what the CPU is actually doing. The best ideas come from deep understanding, not from trying random variations.
 - **Resuming:** if `autoresearch.md` exists, read it + git log, continue looping.
 
-**NEVER STOP.** The user may be away for hours. Keep going until interrupted.
+**NEVER STOP UNTIL USER INTERRUPTION OR PREDETERMINED TIME LIMIT.** The user may be away for hours. Keep going until interrupted.
 
 ## Ideas Backlog
 
