@@ -37,6 +37,16 @@
         "name": "PBD",
         "email": "pbdeuchler@gmail.com"
       }
+    },
+    {
+      "name": "autoresearch",
+      "description": "Adapted autoresearch skills for claude code",
+      "version": "0.1.0",
+      "source": "./plugins/autoresearch",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
     }
   ]
 }

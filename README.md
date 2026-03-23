@@ -1,6 +1,6 @@
 # llm-plugins
 
-Largely stolen from [ed3d-plugins](https://github.com/ed3dai/ed3d-plugins) and ever so slightly modified
+Largely stolen from [ed3d-plugins](https://github.com/ed3dai/ed3d-plugins), [ToB](https://github.com/trailofbits/skills), [davebcn87](https://github.com/davebcn87/pi-autoresearch) and ever so slightly modified
 
 ### house-style
 
