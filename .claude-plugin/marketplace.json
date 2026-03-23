@@ -41,7 +41,7 @@
     {
       "name": "autoresearch",
       "description": "Autonomous experiment loop for optimizing any measurable target",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "source": "./plugins/autoresearch",
       "author": {
         "name": "PBD",
