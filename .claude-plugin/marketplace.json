@@ -31,7 +31,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.1.0",
+      "version": "0.2.1",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
