@@ -21,7 +21,7 @@ Execute an implementation plan. The goal here is very high quality code, archite
 
 **The human cannot see what subagents return. You are their window into the work.**
 
-After EVERY subagent completes (task-implementor, bug-fixer, code-reviewer), you MUST:
+After EVERY subagent completes (task-implementer, bug-fixer, code-reviewer), you MUST:
 
 1. **Print the subagent's full response** to the user before taking any other action
 2. **Do not summarize or paraphrase** - show them what the subagent actually said
@@ -79,7 +79,7 @@ For each step, follow this cycle:
 
 #### 2a. Implement the task
 
-Mark "Step Na: Implementation" as in_progress and dispatch `task-implementor` to begin.
+Mark "Step Na: Implementation" as in_progress and dispatch `task-implementer` to begin.
 
 ```
 <invoke name="Task">
@@ -95,12 +95,12 @@ Mark "Step Na: Implementation" as in_progress and dispatch `task-implementor` to
 
 #### 2b. Write tests and verify correctness
 
-Mark "Step Nb: Tests and Verification" as in_progress and dispatch `task-implementor` to begin.
+Mark "Step Nb: Tests and Verification" as in_progress and dispatch `task-implementer` to begin.
 
 ```
 <invoke name="Task">
 <parameter name="subagent_type">one-shot:task-implementer</parameter>
-<parameter name="description">Implementing Step X, Task Y: [description]</parameter>
+<parameter name="description">Writing tests for Step X, Task Y: [description]</parameter>
 <parameter name="prompt">
 
 ... fleshed out prompt goes here ...
@@ -161,7 +161,7 @@ The phase changed too much for a single review. Chunk the review:
 </invoke>
 ```
 
-After bug-fixer completes, re-review per the `requesting-code-review` skill. Continue loop until zero issues.
+After task-implementer completes the fixes, re-review per the `requesting-code-review` skill. Continue loop until zero issues.
 
 **Plan execution policy (stricter than general code review):**
 
@@ -173,9 +173,11 @@ After bug-fixer completes, re-review per the `requesting-code-review` skill. Con
 
 **Exit condition:** Zero issues in all categories — including Minor.
 
-Mark "Phase Nc: Code review" as complete.
+Mark "Step Nc: Code review" as complete.
 
-#### 3d. Move to Next Step
+### 3. Move to Next Step
+
+Repeat step 2 (2a → 2b → 2c) for each remaining step.
 
 ### 4. Update Project Context
 
@@ -183,6 +185,7 @@ After all phases complete, invoke a subagent to review changes and update README
 
 ```
 <invoke name="Task">
+<parameter name="subagent_type">one-shot:task-implementer</parameter>
 <parameter name="description">Updating project context after implementation</parameter>
 <parameter name="prompt">
   Review what changed during this implementation and update README.md and AGENTS.md files if contracts or structure changed.

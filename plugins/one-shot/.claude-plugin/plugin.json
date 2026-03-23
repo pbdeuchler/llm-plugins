@@ -6,7 +6,7 @@
     "name": "PBD",
     "email": "pbdeuchler@gmail.com"
   },
-  "homepage": "https://github.com/pbdeuchler/llm-plugins/plugins/tooling",
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/plugins/one-shot",
   "repository": "https://github.com/pbdeuchler/llm-plugins.git",
   "license": "UNLICENSED",
   "keywords": [

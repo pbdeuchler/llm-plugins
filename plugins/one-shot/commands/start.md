@@ -19,10 +19,10 @@ The first argument MUST be an absolute path. Verify it exists:
 1. Verify we are in a git repo:
 
    ```bash
-   git -C "$2" rev-parse --git-dir
+   git rev-parse --git-dir
    ```
 
-2. If $2 (seed commitish) was provided verify the committish exists and check out to it. If not, take note of the current branch you are in:
+2. If $2 (seed commitish) was provided, verify the commitish exists and check out to it. If not, take note of the current branch you are on:
 
    ```bash
    git checkout $2
@@ -51,6 +51,14 @@ The skill should execute everything in that file, no more and no less. Follow it
 
 ### Once the skill has completed
 
-3. Spin up the one-shot:holistic-reviewer agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review. Do a final code review and address ALL issues. Do not complete until all issues have been addressed.
+3. Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review. Do a final code review and address ALL issues. Do not complete until all issues have been addressed.
 
-4. If a seed committish was provided and it is a branch create a PR with that branch as the base and the new implementation branch as the compare. If a seed committish was NOT provided then use the original branch you were initialized in as the base. Create a thoughtful description, summarizing what you were initially asked to do in the implementation plan, what you did to complete the task, and why. Make sure to include any tradeoffs, design decisions, or complications that arose. Finally include a quick summary of anything a reviewer should care about when looking at test changes. Ensure throughout the PR description to emphasize anything that reviewers should pay special attention to. Use the `gh` cli tool to interact with GitHub.
+4. Create a PR using the `gh` CLI:
+   - **Base branch:** If a seed commitish was provided and it is a branch, use that as the base. Otherwise, use the original branch you were on at initialization.
+   - **Compare branch:** The new implementation branch.
+   - **Description must include:**
+     1. Summary of what the implementation plan asked for
+     2. What you did to complete the task and why
+     3. Any tradeoffs, design decisions, or complications that arose
+     4. A summary of test changes and what a reviewer should pay attention to
+     5. Anything else reviewers should pay special attention to
