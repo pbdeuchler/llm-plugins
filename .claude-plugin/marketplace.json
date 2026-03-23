@@ -31,7 +31,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
@@ -41,7 +41,7 @@
     {
       "name": "autoresearch",
       "description": "Autonomous experiment loop for optimizing any measurable target",
-      "version": "0.2.1",
+      "version": "0.3.0",
       "source": "./plugins/autoresearch",
       "author": {
         "name": "PBD",
