@@ -40,8 +40,8 @@
     },
     {
       "name": "autoresearch",
-      "description": "Adapted autoresearch skills for claude code",
-      "version": "0.1.0",
+      "description": "Autonomous experiment loop for optimizing any measurable target",
+      "version": "0.2.0",
       "source": "./plugins/autoresearch",
       "author": {
         "name": "PBD",

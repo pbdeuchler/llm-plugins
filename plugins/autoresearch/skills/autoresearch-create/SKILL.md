@@ -93,12 +93,14 @@ Use `log_experiment`'s `asi` parameter to annotate each run with **whatever woul
 JSON config file that lives in the current session's working directory (`ctx.cwd`). Supported fields:
 
 - **`maxIterations`** (number) — maximum experiments before auto-stopping.
+- **`maxDurationMinutes`** (number) — wall clock time limit in minutes. Record `Date.now()` at session start. Before each iteration, check elapsed time. When exceeded, execute graceful shutdown (see below). Useful as a budget proxy when you want to cap how much plan quota a session consumes.
 - **`workingDir`** (string) — override the directory for all autoresearch operations: file I/O (`autoresearch.jsonl`, `autoresearch.md`, `autoresearch.sh`, `autoresearch.checks.sh`, `autoresearch.ideas.md`), command execution, and git operations. Supports absolute paths or relative paths (resolved against `ctx.cwd`). The config file itself always stays in `ctx.cwd`. Fails if the directory doesn't exist.
 
 ```json
 {
   "workingDir": "/path/to/project",
-  "maxIterations": 50
+  "maxIterations": 50,
+  "maxDurationMinutes": 120
 }
 ```
 
@@ -128,8 +130,9 @@ pnpm typecheck 2>&1 | grep -i error || true
 
 ## Loop Rules
 
-**CONTINUE LOOPING UNTIL EITHER USER INTERRUPT OR PREDETERMINED TIME LIMIT.** Never ask "should I continue?" — the user expects autonomous work.
+**CONTINUE LOOPING UNTIL EITHER USER INTERRUPT OR TIME LIMIT.** Never ask "should I continue?" — the user expects autonomous work.
 
+- **Check stop conditions before each iteration.** If `maxIterations` is set and reached, or `maxDurationMinutes` is set and wall clock time since session start exceeds it, execute graceful shutdown. Check elapsed time by running `date +%s` and comparing to the start timestamp you recorded at init.
 - **Primary metric is king.** Improved → `keep`. Worse/equal → `discard`. Secondary metrics rarely affect this.
 - **Annotate every run with `asi`.** Record what you learned — not what you did. What would help the next iteration or a fresh agent resuming this session?
 - **Watch the confidence score.** After 3+ runs, `log_experiment` reports a confidence score (best improvement as a multiple of the session noise floor). ≥2.0× means the improvement is likely real. <1.0× means it's within noise — consider re-running to confirm before keeping. The score is advisory — it never auto-discards.
@@ -139,7 +142,16 @@ pnpm typecheck 2>&1 | grep -i error || true
 - **Think longer when stuck.** Re-read source files, study the profiling data, reason about what the CPU is actually doing. The best ideas come from deep understanding, not from trying random variations.
 - **Resuming:** if `autoresearch.md` exists, read it + git log, continue looping.
 
-**NEVER STOP UNTIL USER INTERRUPTION OR PREDETERMINED TIME LIMIT.** The user may be away for hours. Keep going until interrupted.
+**NEVER STOP UNTIL USER INTERRUPTION OR TIME/ITERATION LIMIT.** The user may be away for hours. Keep going until interrupted or a configured limit is reached.
+
+## Graceful Shutdown
+
+When a stop condition is reached (time limit, iteration limit, or unrecoverable error), shut down cleanly:
+
+1. **Finish the current cycle.** Complete the in-progress `run_experiment` + `log_experiment` pair. Do not abandon a running experiment.
+2. **Update `autoresearch.md`.** Write final state to the "What's Been Tried" section — include the best result, total iterations, and any promising unexplored ideas.
+3. **Commit all autoresearch files.** Stage and commit `autoresearch.md`, `autoresearch.jsonl`, `autoresearch.ideas.md` (if exists), and any kept code changes.
+4. **Print summary.** Report: iterations completed, best result (metric value + description), elapsed time, and reason for stopping.
 
 ## Ideas Backlog
 
