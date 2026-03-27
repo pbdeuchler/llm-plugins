@@ -1,5 +1,15 @@
 # Changelog
 
+## [blank-slate-review] 0.1.0
+
+Initial release of the blank-slate-review plugin.
+
+**New:**
+
+- `/blank-slate-review:start` command -- validates optional scope and launches the review pipeline
+- `execute-review` skill -- orchestrates scout, file sampling, fan-out decision, and reviewer dispatch
+- `codebase-reviewer` agent -- Opus-powered multi-persona panel with seven analysis dimensions, four severity levels, and holistic remediation synthesis
+
 ## [quick-plan] 0.1.0
 
 Initial release of the quick-plan plugin.

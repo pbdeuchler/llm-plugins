@@ -1,0 +1,19 @@
+{
+  "name": "blank-slate-review",
+  "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation",
+  "version": "0.1.0",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/plugins/blank-slate-review",
+  "repository": "https://github.com/pbdeuchler/llm-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "code review",
+    "codebase analysis",
+    "multi-persona",
+    "engineering review",
+    "workflow"
+  ]
+}

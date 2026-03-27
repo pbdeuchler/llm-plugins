@@ -64,6 +64,8 @@ The skill should write a completed plan to the file provided.
 
 ### Once the skill has completed
 
+Commit the new file to the newly created git branch.
+
 If the user has the `one-shot:start` command installed, output a helper command to help them quickly and easily start implementation with it. Remind the user to clear their context first.
 
 ```

@@ -51,8 +51,18 @@
     {
       "name": "quick-plan",
       "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./plugins/quick-plan",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
+    },
+    {
+      "name": "blank-slate-review",
+      "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation",
+      "version": "0.1.0",
+      "source": "./plugins/blank-slate-review",
       "author": {
         "name": "PBD",
         "email": "pbdeuchler@gmail.com"

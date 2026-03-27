@@ -44,7 +44,7 @@ The user cannot see subagent output unless you show them. If it seems important 
 
 ### 1. Context Gathering
 
-Dispatch the `quick-plan:distributed-systems` agent to investigate the codebase. It should map the relevant module structure, identify existing patterns and conventions, and surface the key types and interfaces that the proposed work will touch. Provide it with the user's prompt and any files or areas you already know are relevant.
+Dispatch the `quick-plan:distributed-systems` agent to investigate the codebase. It should map the relevant module structure, identify existing patterns and conventions, and surface the key types and interfaces that the proposed work will touch. Provide it with the user's prompt and any files or areas you already know are relevant. Be surgical in how you analyze the codebase. While it is fine to read and process as much of the codebase as possible, understand any changes will want to be minimal and precise.
 
 While waiting, read any project-level documentation (README, CLAUDE.md, architecture docs) yourself. Skim recent git history for the areas likely affected to understand velocity and recent direction.
 
