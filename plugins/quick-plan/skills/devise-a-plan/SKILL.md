@@ -71,6 +71,8 @@ When both agents return, merge their perspectives. Flag any tensions (e.g., prod
 
 ### 4. Clarification
 
+**NOTE:** Clarification is NOT always neccessary. Only do so if the ask is vague, implementation is fuzzy, or there is additional context needed. MOST plans will not need much clarification, if at all. If possible, skip this step.
+
 By now you have a context inventory, data model analysis, and broader project assessment with tensions flagged. Before generating approaches, surface everything you need from the user.
 
 Consolidate your open questions into a single, structured ask. Group them by type:
@@ -90,6 +92,8 @@ Dispatch the `quick-plan:systems-performance` agent to evaluate the approaches f
 When they return, annotate each approach with their findings. Every approach should now have a clear picture of its tradeoffs: complexity, performance characteristics, security posture, operational burden, and future flexibility.
 
 ### 6. Pick a Path
+
+**NOTE:** If what is being done is simple enough or only has one clear and obvious path forward at this point simply pick that and continue. Only initiate interaction with the user if there are genuinely different paths forward with consequential variances.
 
 Present the annotated approaches to the user. For each, state the single strongest argument for and against it. Make a recommendation and explain why. If the tradeoffs are genuinely close, say so — do not manufacture false confidence.
 
