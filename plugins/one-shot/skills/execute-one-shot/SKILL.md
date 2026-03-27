@@ -17,24 +17,16 @@ Execute an implementation plan. The goal here is very high quality code, archite
 
 - No implementation plan exists yet (use writing-implementation-plans first)
 
-## MANDATORY: Human Transparency
-
-**The human cannot see what subagents return. You are their window into the work.**
-
-After EVERY subagent completes (task-implementer, bug-fixer, code-reviewer), you MUST:
-
-1. **Print the subagent's full response** to the user before taking any other action
-2. **Do not summarize or paraphrase** - show them what the subagent actually said
-3. **Include all details:** test counts, issue lists, commit hashes, error messages
+## MANDATORY: Dispatching subagents
 
 **Before dispatching any subagent:**
 
 - Briefly explain (2-3 sentences) what you're asking the agent to do
 - State which step this covers
+- Ensure the subagent has all required context
 
-**Why this matters:** When you silently process subagent output without showing the user, they lose visibility into their own codebase. They can't catch errors, learn from the process, or intervene when needed. Transparency is not optional.
-
-**Red flag:** If you find yourself thinking "I'll just move on to the next step" without printing the subagent's response, STOP. Print it first.
+**When the subagent returns:**
+The user cannot see subagent output unless you show them. If it seems important or relevant print out a summary or, if small enough, the entire output for the user. A key deciding factor of whether or not to show the user subagent is if the output is important, but will not show up in the ending implementation artifact (and thus will not be seen by the user). Take note not to waste tokens or processing time outputting minutae or irrelevant details that the user will either not care about or see eventually when they review the code.
 
 ## REQUIRED: Implementation Plan Path
 
@@ -56,6 +48,8 @@ If `docs/plans/` doesn't exist or is empty, ask the user to provide the path dir
 ## The Process
 
 ### 1. Create Phase-Level Task List
+
+Think deeply about what's being asked of you. The final result of this implementation should be SIMPLE, CLEAN, and ELEGANT. Code should be easy to read, very maintainable, easily testable, and deeply thought through. Code should never be written for the sake of writing it, every LoC should have a strong purpose. Always bias towards refactoring or removing code before implementing net new. Do not implement one off solutions, make things as general as reasonable. Implement for the future as well as right now, never code yourself into a corner, ensure code architecture is extensible and flexible, and do your best to leave the codebase better than how you found it.
 
 Use TaskCreate to create **three task entries per step** (or TodoWrite in older Claude Code versions). The first task entry per step should be implementation, the second should be testing and verification, the third should be code review:
 
