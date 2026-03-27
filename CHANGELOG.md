@@ -1,5 +1,19 @@
 # Changelog
 
+## [quick-plan] 0.1.0
+
+Initial release of the quick-plan plugin.
+
+**New:**
+
+- `/quick-plan:start` command -- creates a branch, picks a plan file location, and launches the planning skill
+- `devise-a-plan` skill -- structured 9-step planning process with specialist subagent dispatch
+- `systems-performance` agent -- evaluates approaches for hot path efficiency, allocation pressure, and resource usage
+- `distributed-systems` agent -- investigates codebase structure and evaluates cross-boundary interactions
+- `security-engineer` agent -- evaluates threat surface changes, trust boundaries, and escalation paths
+- `infra-operations` agent -- evaluates deployment impact, rollback safety, and observability gaps
+- `product-lead` agent -- evaluates strategic fit, scope, and future flexibility
+
 ## [autoresearch] 0.2.0
 
 **New:**

@@ -1,0 +1,19 @@
+{
+  "name": "quick-plan",
+  "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents",
+  "version": "0.1.0",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/plugins/quick-plan",
+  "repository": "https://github.com/pbdeuchler/llm-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "planning",
+    "implementation",
+    "design",
+    "architecture",
+    "workflow"
+  ]
+}

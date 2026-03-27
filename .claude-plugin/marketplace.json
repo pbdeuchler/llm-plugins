@@ -31,7 +31,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
@@ -43,6 +43,16 @@
       "description": "Autonomous experiment loop for optimizing any measurable target",
       "version": "0.3.0",
       "source": "./plugins/autoresearch",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
+    },
+    {
+      "name": "quick-plan",
+      "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents",
+      "version": "0.1.0",
+      "source": "./plugins/quick-plan",
       "author": {
         "name": "PBD",
         "email": "pbdeuchler@gmail.com"

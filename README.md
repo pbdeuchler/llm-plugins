@@ -20,6 +20,14 @@ Opinionated development guides covering coding patterns, testing strategies, dat
 /plugin install house-style@llm-plugins
 ```
 
+### quick-plan
+
+Tightly scoped implementation planning with a panel of specialist engineer subagents. Creates high-quality plans of 5 steps or fewer, each roughly one story point, ready to hand off to an implementer. Five specialist agents (systems performance, distributed systems, security, infra ops, product lead) are dispatched at specific process steps to evaluate approaches from their domain.
+
+```
+/quick-plan:start [basic prompt]
+```
+
 ### one-shot
 
 Executes an implementation plan end-to-end in a single session: creates a branch, implements each step with TDD, runs per-step code review (fixing all severity levels), performs a holistic final review, and opens a PR. Rejects plans too large or vague to complete in 5 steps at a high quality bar.
@@ -52,5 +60,6 @@ All plugins are available from the `llm-plugins` marketplace:
 /plugin install autoresearch@llm-plugins
 /plugin install house-style@llm-plugins
 /plugin install one-shot@llm-plugins
+/plugin install quick-plan@llm-plugins
 /plugin install tooling@llm-plugins
 ```
