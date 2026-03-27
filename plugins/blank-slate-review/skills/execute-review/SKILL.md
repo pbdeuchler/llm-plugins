@@ -39,19 +39,22 @@ Output a compact markdown inventory. Do NOT read file contents -- only names, pa
 Format:
 
 ```
+
 ## Structural Inventory
 
 **Languages:** Go (45 files), TypeScript (23 files), ...
 **Frameworks:** Echo, React, ...
 **Layout:**
+
 - src/ -- main application code
 - pkg/ -- shared packages
 - ...
 
 **Entry Points:** cmd/server/main.go, src/index.ts, ...
-**Test Locations:** *_test.go alongside source (38 test files), src/__tests__/ (12 files)
+**Test Locations:** \*\_test.go alongside source (38 test files), src/**tests**/ (12 files)
 **Config:** Makefile, docker-compose.yml, .github/workflows/ci.yml
 **Total Files:** ~150 within scope
+
 ```
 </parameter>
 </invoke>
@@ -91,6 +94,7 @@ Estimate whether the selected files fit in a single reviewer's context:
 **Fan-out heuristic:** Be conservative. If in doubt, fan out. It's better to dispatch two reviewers with clean context than one reviewer with truncated context.
 
 If fanning out, partition files into groups where each group:
+
 - Contains files from the same module/directory
 - Has its own entry points and tests where possible
 - Gets a copy of the structural inventory for orientation
@@ -185,6 +189,7 @@ If the user says yes, write the review output to the specified file. Do not comm
 This skill is designed around context cleanliness. Follow these rules:
 
 - **No extraneous tool calls.** Every Glob, Read, Grep, or Bash call should directly serve the scout or sampling phases. Do not explore out of curiosity.
+- **Be smart about tool use.** Use tools intelligently. Use tools like ast-grep (`sg`) to surgically and thoroughly work your way through the codebase, use treesitter or LSPs if appropriate. For heavyweight tools spin out a subagent to prevent from polluting main context.
 - **No commentary between phases.** Move from scout to sampling to dispatch without narrating your thought process at length. Brief status updates only.
 - **No redundant reads.** If the scout already told you what languages are present, do not re-scan for languages.
 - **Subagent prompts are self-contained.** The reviewer agent should have everything it needs in its prompt -- structural inventory and file list. Do not assume it can see your conversation history.
@@ -192,10 +197,10 @@ This skill is designed around context cleanliness. Follow these rules:
 
 ## Common Rationalizations -- STOP
 
-| Excuse | Reality |
-|--------|---------|
-| "Let me read a few more files to be thorough" | No. The sampling phase selected files for a reason. Trust the sample. |
-| "I should review this file too, it looks interesting" | No. Stick to the sample. Adding files mid-review wastes context. |
-| "I'll skip the scout and just start reading code" | No. The scout inventory drives intelligent sampling. Never skip it. |
-| "Fan-out is overkill for this" | If you're unsure, fan out. Truncated context is worse than an extra subagent. |
-| "I'll add some suggestions for improvements" | No. This is observation only. Findings and remediation, not implementation. |
+| Excuse                                                | Reality                                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------- |
+| "Let me read a few more files to be thorough"         | No. The sampling phase selected files for a reason. Trust the sample.         |
+| "I should review this file too, it looks interesting" | No. Stick to the sample. Adding files mid-review wastes context.              |
+| "I'll skip the scout and just start reading code"     | No. The scout inventory drives intelligent sampling. Never skip it.           |
+| "Fan-out is overkill for this"                        | If you're unsure, fan out. Truncated context is worse than an extra subagent. |
+| "I'll add some suggestions for improvements"          | No. This is observation only. Findings and remediation, not implementation.   |

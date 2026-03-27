@@ -12,17 +12,17 @@ Autonomous experiment loop that optimizes any measurable target. Point it at a m
 /autoresearch:start [duration-minutes]
 ```
 
-### house-style
+### blank-slate-review
 
-Opinionated development guides covering coding patterns, testing strategies, database access, and technical writing. Skills are activated automatically when relevant -- functional core / imperative shell, defense in depth, property-based testing, PostgreSQL conventions, and more.
+Multi-perspective engineering review of any codebase -- or a scoped subset -- from a single command. A Haiku-powered scout maps the structure, then an Opus-powered panel of staff engineers reviews sampled files across seven dimensions (correctness, consistency, simplicity, design principles, idiomatic usage, security, test quality) and returns severity-classified findings with holistic remediation prose. For large codebases, files are partitioned by module and reviewed in parallel.
 
 ```
-/plugin install house-style@llm-plugins
+/blank-slate-review:start [scope]
 ```
 
 ### quick-plan
 
-Tightly scoped implementation planning with a panel of specialist engineer subagents. Creates high-quality plans of 5 steps or fewer, each roughly one story point, ready to hand off to an implementer. Five specialist agents (systems performance, distributed systems, security, infra ops, product lead) are dispatched at specific process steps to evaluate approaches from their domain.
+Tightly scoped implementation planning with a panel of specialist engineer subagents. Creates plans of 5 steps or fewer, each roughly one story point, ready to hand off to an implementer. Five specialist agents (systems performance, distributed systems, security, infra ops, product lead) evaluate approaches from their domain at specific process steps.
 
 ```
 /quick-plan:start [basic prompt]
@@ -34,6 +34,14 @@ Executes an implementation plan end-to-end in a single session: creates a branch
 
 ```
 /one-shot:start <absolute-plan-file-path> [seed-commitish]
+```
+
+### house-style
+
+Opinionated development guides covering coding patterns, testing strategies, database access, and technical writing. Skills activate automatically when relevant -- functional core / imperative shell, defense in depth, property-based testing, PostgreSQL conventions, and more.
+
+```
+/plugin install house-style@llm-plugins
 ```
 
 ### tooling
@@ -58,6 +66,7 @@ All plugins are available from the `llm-plugins` marketplace:
 
 ```bash
 /plugin install autoresearch@llm-plugins
+/plugin install blank-slate-review@llm-plugins
 /plugin install house-style@llm-plugins
 /plugin install one-shot@llm-plugins
 /plugin install quick-plan@llm-plugins

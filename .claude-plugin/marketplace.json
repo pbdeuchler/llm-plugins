@@ -61,7 +61,7 @@
     {
       "name": "blank-slate-review",
       "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "source": "./plugins/blank-slate-review",
       "author": {
         "name": "PBD",
