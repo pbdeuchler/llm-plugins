@@ -95,7 +95,7 @@ When they return, annotate each approach with their findings. Every approach sho
 
 **NOTE:** If what is being done is simple enough or only has one clear and obvious path forward at this point simply pick that and continue. Only initiate interaction with the user if there are genuinely different paths forward with consequential variances.
 
-Present the annotated approaches to the user. For each, state the single strongest argument for and against it. Make a recommendation and explain why. If the tradeoffs are genuinely close, say so — do not manufacture false confidence.
+Confer amongst the group and if differences in opinion exist, pick your top 2-3 approaches. Present the annotated approaches to the user. For each, state the single strongest argument for and against it. If the tradeoffs are genuinely close, say so — do not manufacture false confidence.
 
 The user picks. If they pick something different from your recommendation, understand why before proceeding. Their reasoning may reveal context you're missing.
 
