@@ -1,7 +1,7 @@
 {
   "name": "autoresearch",
   "description": "Autonomous experiment loop for optimizing any measurable target",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": {
     "name": "PBD",
     "email": "pbdeuchler@gmail.com"
@@ -9,10 +9,5 @@
   "homepage": "https://github.com/pbdeuchler/llm-plugins/plugins/autoresearch",
   "repository": "https://github.com/pbdeuchler/llm-plugins.git",
   "license": "UNLICENSED",
-  "keywords": [
-    "autoresearch",
-    "optimization",
-    "experiments",
-    "autonomous"
-  ]
+  "keywords": ["autoresearch", "optimization", "experiments", "autonomous"]
 }

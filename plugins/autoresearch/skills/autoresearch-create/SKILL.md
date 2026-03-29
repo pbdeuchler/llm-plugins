@@ -31,7 +31,13 @@ Run once at session start. This is the only phase where the main thread does hea
 7. **Commit** all autoresearch files.
 8. **Write config header** to `autoresearch.jsonl`:
    ```json
-   {"type":"config","name":"<session>","metricName":"<name>","metricUnit":"<unit>","bestDirection":"<lower|higher>"}
+   {
+     "type": "config",
+     "name": "<session>",
+     "metricName": "<name>",
+     "metricUnit": "<unit>",
+     "bestDirection": "<lower|higher>"
+   }
    ```
 9. **Record start timestamp**: `date +%s` — store for duration limit checks.
 10. **Run baseline** via the first subagent dispatch (see Phase 2). The baseline description should be "Baseline measurement".
@@ -42,29 +48,38 @@ Run once at session start. This is the only phase where the main thread does hea
 # Autoresearch: <goal>
 
 ## Objective
+
 <Specific description of what we're optimizing and the workload.>
 
 ## Metrics
+
 - **Primary**: <name> (<unit>, lower/higher is better) — the optimization target
 - **Secondary**: <name>, <name>, ... — independent tradeoff monitors
 
 ## How to Run
+
 `./autoresearch.sh` — outputs `METRIC name=number` lines.
 
 ## Files in Scope
+
 <Every file the agent may modify, with a brief note on what it does.>
 
 ## Off Limits
+
 <What must NOT be touched.>
 
 ## Constraints
+
 <Hard rules: tests must pass, no new deps, etc.>
 
 ## What's Been Tried
+
 <Update as experiments accumulate — key wins, dead ends, architectural insights.>
 ```
 
 ### `autoresearch.sh`
+
+Use a generic subagent to create this in order to prevent polluting the main context.
 
 Bash script (`set -euo pipefail`) that pre-checks fast, runs the benchmark, and outputs structured `METRIC name=value` lines. For fast noisy benchmarks (<5s), run multiple times and report median.
 
@@ -116,6 +131,7 @@ The main thread is a **strategy controller**. It decides what to try, dispatches
 ### Step 1: Check Stop Conditions
 
 Before each iteration:
+
 - If `maxIterations` is set and reached → graceful shutdown.
 - Run `date +%s`, compare to start timestamp. If `maxDurationMinutes` exceeded → graceful shutdown.
 
@@ -200,6 +216,7 @@ Run #5: keep | total_µs: 14,600 (-3.8%) | confidence: 2.3× | "Inline hot loop"
 ```
 
 Adjust your internal strategy:
+
 - Track consecutive discards/crashes.
 - Note patterns in ASI across runs.
 - Add deferred ideas to `autoresearch.ideas.md`.
@@ -207,6 +224,7 @@ Adjust your internal strategy:
 ### Step 7: Periodic Maintenance
 
 Every **5 runs**, update `autoresearch.md`:
+
 - Refresh "What's Been Tried" with key wins, dead ends, and architectural insights.
 - Commit the updated file.
 
