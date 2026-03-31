@@ -51,9 +51,17 @@ The skill should execute everything in that file, no more and no less. Follow it
 
 ### Once the skill has completed
 
-3. Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review. Do a final code review and address ALL issues. Do not complete until all issues have been addressed.
+3. You are going to do a holistic review of all changes.
 
-4. Create a PR using the `gh` CLI:
+3a. IFF the user has the `/codex:rescue` command plugin installed use it to perform the holistic review. Invoke this command with three things: the agent definition markdown text for `one-shot:holistic-reviewer`, the initial implementation plan, and a base branch it can diff against to get an idea of everything that's changed during implementation.
+
+3b. IFF the user does not have the `/codex:rescue` command plugin installed: Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review.
+
+3c. **MANDATORY:** Address ALL issues from the holistic code review. Do not complete until all issues have been addressed. Loop through this step (3) until you get a clean code review.
+
+4. Commit the changes from the holistic code review with a detailed commit message describing what was done.
+
+5. Create a PR using the `gh` CLI:
    - **Base branch:** If a seed commitish was provided and it is a branch, use that as the base. Otherwise, use the original branch you were on at initialization.
    - **Compare branch:** The new implementation branch.
    - **Description must include:**
@@ -62,3 +70,5 @@ The skill should execute everything in that file, no more and no less. Follow it
      3. Any tradeoffs, design decisions, or complications that arose
      4. A summary of test changes and what a reviewer should pay attention to
      5. Anything else reviewers should pay special attention to
+
+   The success of this entire implementation relies upon it having a good PR description. It is imperative that the description is concise without being terse or lacking information. It should never be long, wordy, or overly descriptive. An engineer of any skill level should be able to use the description and immediately understand what was done, why it was done, and what they should pay attention to most in the review.

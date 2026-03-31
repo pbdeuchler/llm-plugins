@@ -1,5 +1,13 @@
 # Changelog
 
+## [one-shot] 0.4.0
+
+Use codex for holistic reviewer
+
+**New:**
+
+- Uses the `/codex:rescue` command along with the `holistic-reviewer` agent to get a true clean room review via dueling models
+
 ## [blank-slate-review] 0.1.0
 
 Initial release of the blank-slate-review plugin.
