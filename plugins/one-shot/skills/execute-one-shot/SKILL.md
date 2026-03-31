@@ -51,6 +51,8 @@ If `docs/plans/` doesn't exist or is empty, ask the user to provide the path dir
 
 Think deeply about what's being asked of you. The final result of this implementation should be SIMPLE, CLEAN, and ELEGANT. Code should be easy to read, very maintainable, easily testable, and deeply thought through. Code should never be written for the sake of writing it, every LoC should have a strong purpose. Always bias towards refactoring or removing code before implementing net new. Do not implement one off solutions, make things as general as reasonable. If you do need to implement net new code think in terms of building blocks instead of purpose specific, tightly coupled glue code. Implement for the future as well as right now, never code yourself into a corner, ensure code architecture is extensible and flexible, and do your best to leave the codebase better than how you found it.
 
+**MANDATORY:** Your implementation taks list should be optimally ordered so that not only are the steps logical and increasing in complexity, first creating foundational building blocks or required underlying logic, but also so that context is managed as effeciently as possible. If there is a step you can do independently, or something you can implement that you will later treat as a black box, order those steps earlier so that they can be summarized or removed from context for later steps.
+
 Use TaskCreate to create **three task entries per step** (or TodoWrite in older Claude Code versions). The first task entry per step should be implementation, the second should be testing and verification, the third should be code review:
 
 ```
@@ -168,6 +170,22 @@ After task-implementer completes the fixes, re-review per the `requesting-code-r
 **Exit condition:** Zero issues in all categories — including Minor.
 
 Mark "Step Nc: Code review" as complete.
+
+**MANDATORY:** After finishing the code review section of each task intelligently compact your context. The goal here is to constantly prune context overtime, not neccessarily completely rebuild it. **NOT PRUNING ANY CONTEXT IS A FAILURE THAT SHOULD BE REPORTED TO THE USER**. Even if you prune 5% of context, that is desireable. Since you are an advanced LLM you should have some idea of what you have left to do in this session, use that intelligence to understand what is neccessary in your context for the future and what isn't.
+
+Common Thought Patterns When Smart Compacting - **STOP**
+
+| Do                                                                                            | Because                                                                                                                                                  |
+| --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| "I'm done interacting with that 3rd party dependency. I can summarize anything related."      | You should have properly sequenced the implementation steps to ensure that dealing with this 3rd party dep is contained to only one implementation step. |
+| "There's a lot of tool calls here, I can remove any that didn't lead to a change"             | There's no reason to keep tool calls or their results around if they don't inform you why or how you did something important.                            |
+| "I'm done working on this piece of code, I should keep it around since it'll be called later" | As you build your implementation core pieces of code will be needed to inform your future work                                                           |
+
+| Don't                                                                                                          | Because                                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| "This core code file is taking up a lot of context, pruning it will be an easy win and I can re-read it later" | Re-reading files wastes context. If you are unsure about the future use of a large file summarize it as an AST index to aid future content reads |
+| "I have to prune something, but everything is valuable"                                                        | This is never true, unless you have planned and executed everything perfectly.                                                                   |
+| "I can reason about this central concept from the beginning in the future, no need to keep it around"          | Anything core to your implementation, planning process, or reasoning for why you're doing something should be kept                               |
 
 ### 3. Move to Next Step
 

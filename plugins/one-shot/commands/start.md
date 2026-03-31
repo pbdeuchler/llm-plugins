@@ -51,13 +51,40 @@ The skill should execute everything in that file, no more and no less. Follow it
 
 ### Once the skill has completed
 
-3. You are going to do a holistic review of all changes.
+3. **Holistic Review**
 
-3a. IFF the user has the `/codex:rescue` command plugin installed use it to perform the holistic review. Invoke this command with three things: the agent definition markdown text for `one-shot:holistic-reviewer`, the initial implementation plan, and a base branch it can diff against to get an idea of everything that's changed during implementation.
+   **DETECTION (mandatory before proceeding):** Scan your available skills/commands list (shown in your system context) for `codex:rescue`. Record the result explicitly: "codex:rescue: AVAILABLE" or "codex:rescue: NOT AVAILABLE." You MUST do this before continuing.
 
-3b. IFF the user does not have the `/codex:rescue` command plugin installed: Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review.
+   **If AVAILABLE → execute 3a. Skip 3b entirely. Proceeding to 3b when codex:rescue is available is a failure.**
 
-3c. **MANDATORY:** Address ALL issues from the holistic code review. Do not complete until all issues have been addressed. Loop through this step (3) until you get a clean code review.
+   3a. Read the `one-shot:holistic-reviewer` agent definition file in full. Then use the Skill tool to invoke `codex:rescue` with `--fresh`. Pass it a single prompt that contains all three of these:
+      - The full text of the holistic-reviewer agent definition you just read (Codex does not have access to your agent files — you must inline it)
+      - The absolute path to the implementation plan
+      - The base branch to diff against
+
+      ```
+      Skill: codex:rescue
+      Args: --fresh
+
+      You are performing a holistic code review. Follow the agent definition below exactly.
+
+      ## Agent Definition
+
+      {paste the FULL holistic-reviewer agent definition here}
+
+      ## Review Parameters
+
+      Implementation plan: {absolute_plan_path}
+      Base branch: {base_branch}
+      ```
+
+   **If NOT AVAILABLE → 3b is the fallback.**
+
+   3b. Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide this subagent with the initial implementation plan and a base branch that it can use to compare for diffs to review.
+
+   ---
+
+   3c. **MANDATORY:** Address ALL issues from the holistic code review. Do not complete until all issues have been addressed. Loop through this step (3) until you get a clean code review.
 
 4. Commit the changes from the holistic code review with a detailed commit message describing what was done.
 
@@ -70,5 +97,7 @@ The skill should execute everything in that file, no more and no less. Follow it
      3. Any tradeoffs, design decisions, or complications that arose
      4. A summary of test changes and what a reviewer should pay attention to
      5. Anything else reviewers should pay special attention to
+
+   IF YOU ENCOUNTER THIS ERROR: `pull request create failed: GraphQL: Head sha can't be blank, Base sha can't be blank, No commits between {base} and {compare}, Base ref must be a branch (createPullRequest)` then ensure `{base}` exists and is up to date on origin
 
    The success of this entire implementation relies upon it having a good PR description. It is imperative that the description is concise without being terse or lacking information. It should never be long, wordy, or overly descriptive. An engineer of any skill level should be able to use the description and immediately understand what was done, why it was done, and what they should pay attention to most in the review.
