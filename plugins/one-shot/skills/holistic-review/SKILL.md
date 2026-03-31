@@ -34,15 +34,12 @@ You MUST write this line before proceeding. Do not skip it.
 
 1. Read the `one-shot:holistic-reviewer` agent definition file in full. Codex does not have access to your agent files — you must inline the full text.
 
-2. Use the Skill tool to invoke `codex:rescue` with `--fresh`. Pass a single prompt containing all three of:
+2. Invoke the PLUGIN `/codex:rescue` with `--fresh`. Pass a single prompt containing all three of:
    - The full text of the holistic-reviewer agent definition
    - The absolute path to the implementation plan
    - The base branch to diff against
 
    ```
-   Skill: codex:rescue
-   Args: --fresh
-
    You are performing a holistic code review. Follow the agent definition below exactly.
 
    ## Agent Definition
