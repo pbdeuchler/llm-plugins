@@ -201,19 +201,9 @@ After all phases complete, invoke a subagent to review changes and update README
 **If subagent reports updates:** Review the changes, then proceed to final review.
 **If subagent reports no updates needed:** Proceed to final review.
 
-### 5. Final Review
+### 5. Complete Development
 
-After all steps complete, use the `requesting-code-review` skill for final review:
-
-- Reviews entire implementation
-- Checks all plan requirements met
-- Validates overall architecture
-
-Continue the review loop until zero issues remain.
-
-### 6. Complete Development
-
-After final review passes:
+After implementation is complete:
 
 - Provide a report to the human operator
   - For each step:
