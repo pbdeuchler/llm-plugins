@@ -91,6 +91,8 @@ Now that you have the whole picture, compare it against the assumptions and ment
 - Is there unnecessary duplication that should be extracted?
 - Is complexity proportional to the problem being solved?
 - Would a new team member understand this code without extensive explanation?
+- Can this code be refactored to be more elegant, simple, and reduce possible code paths?
+- Is this code too intertwined, does it conflate concerns, and are things tightly coupled?
 
 #### 4c. Simplicity
 
@@ -98,6 +100,8 @@ Now that you have the whole picture, compare it against the assumptions and ment
 - Are there over-engineered patterns (unnecessary interfaces, premature abstraction, speculative generality)?
 - Is the solution the simplest one that works, or has complexity crept in?
 - Are there unnecessary dependencies or imports?
+- Is the code unneccessarily verbose or too complicated?
+- Can any unused or single use code be removed or simplied in a refactor?
 
 #### 4d. Design Principles
 
