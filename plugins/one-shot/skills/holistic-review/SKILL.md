@@ -34,9 +34,7 @@ You MUST write this line before proceeding. Do not skip it.
 
 **This is the primary path. You may not skip it when codex:rescue is available. Falling through to the fallback path when codex:rescue is detected is a failure.**
 
-1. Get the `one-shot:holistic-reviewer` agent definition file's fully qualified path.
-
-The most likely location for this agent definition file is: ${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md
+1. Get the `one-shot:holistic-reviewer` agent definition file's fully qualified path: ${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md
 
 2. Invoke SkillTool("/codex:rescue --fresh --foreground \"{prompt}\"). Pass a prompt (the {prompt} variable) containing all three of:
    - The path of the holistic-reviewer agent definition
@@ -44,16 +42,12 @@ The most likely location for this agent definition file is: ${CLAUDE_PLUGIN_ROOT
    - The base branch to diff against
 
    ```
-   You are performing a holistic code review. Follow the agent definition below exactly.
+   You are performing a holistic code review. Follow this agent definition exactly. READ THIS AGENT DEFINITON: {paste the FULLY QUALIFIED holistic-reviewer agent file path here}
 
-   ## Agent Definition
+   Review Parameters:
 
-   READ THIS: {paste the FULLY QUALIFIED holistic-reviewer agent file path here}
-
-   ## Review Parameters
-
-   Implementation plan: {absolute_plan_path}
-   Base branch: {base_branch}
+   - Implementation plan: {absolute_plan_path}
+   - Base branch: {base_branch}
    ```
 
 ### If NOT AVAILABLE: fallback to subagent
