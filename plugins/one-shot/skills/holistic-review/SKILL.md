@@ -34,7 +34,7 @@ You MUST write this line before proceeding. Do not skip it.
 
 1. Read the `one-shot:holistic-reviewer` agent definition file in full. Codex does not have access to your agent files — you must inline the full text.
 
-2. Invoke the PLUGIN `/codex:rescue` with `--fresh`. Pass a single prompt containing all three of:
+2. Invoke SkillTool('codex:rescue') with `--fresh`. Pass a single prompt containing all three of:
    - The full text of the holistic-reviewer agent definition
    - The absolute path to the implementation plan
    - The base branch to diff against
@@ -52,8 +52,6 @@ You MUST write this line before proceeding. Do not skip it.
    Base branch: {base_branch}
    ```
 
-3. Return the review output.
-
 ### If NOT AVAILABLE: fallback to subagent
 
 Spin up the `one-shot:holistic-reviewer` agent in a new subagent with a clean context. Provide the implementation plan path and the base branch.
@@ -70,6 +68,8 @@ Base branch: {base_branch}
 </parameter>
 </invoke>
 ```
+
+3. **MANDATORY:** Address ALL issues from the holistic code review. Do not complete until all issues have been addressed. Loop through steps 2-3 until you get a clean code review.
 
 ## Common Mistakes
 

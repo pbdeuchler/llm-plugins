@@ -53,11 +53,9 @@ The skill should execute everything in that file, no more and no less. Follow it
 
 3. **Holistic Review:** Use your Skill tool to invoke `one-shot:holistic-review` within a subagent. The implementation plan path is `$1` and the base branch is the branch you checked out from (or the seed commitish branch if provided).
 
-4. **MANDATORY:** Address ALL issues from the holistic code review. Do not complete until all issues have been addressed. Loop through steps 3-4 until you get a clean code review.
+4. Commit the changes from the holistic code review with a detailed commit message describing what was done.
 
-5. Commit the changes from the holistic code review with a detailed commit message describing what was done.
-
-6. Create a PR using the `gh` CLI:
+5. Create a PR using the `gh` CLI:
    - **Base branch:** If a seed commitish was provided and it is a branch, use that as the base. Otherwise, use the original branch you were on at initialization.
    - **Compare branch:** The new implementation branch.
    - **Description must include:**
