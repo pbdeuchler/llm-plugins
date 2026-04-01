@@ -2,7 +2,7 @@
 name: holistic-review
 description: Use when performing a holistic code review of an implementation - routes to codex:rescue or falls back to a direct subagent
 context: fork
-allowed-tools: Bash(node:*), Read(~/.claude/plugins/marketplaces/llm-plugins/plugins/one-shot/agents/holistic-reviewer/AGENT.md)
+allowed-tools: Bash(node *), Read(~/.claude/plugins/marketplaces/llm-plugins/plugins/one-shot/agents/holistic-reviewer.md), Read(.claude/plugins/marketplaces/llm-plugins/plugins/one-shot/agents/holistic-reviewer.md), Read(${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md)
 ---
 
 # Holistic Review
@@ -35,6 +35,8 @@ You MUST write this line before proceeding. Do not skip it.
 **This is the primary path. You may not skip it when codex:rescue is available. Falling through to the fallback path when codex:rescue is detected is a failure.**
 
 1. Read the `one-shot:holistic-reviewer` agent definition file in full. Codex does not have access to your agent files — you must inline the full text.
+
+The most likely location for this agent definition file is: ${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md
 
 2. Invoke SkillTool("/codex:rescue --fresh --foreground \"{prompt}\"). Pass a prompt (the {prompt} variable) containing all three of:
    - The full text of the holistic-reviewer agent definition
