@@ -34,7 +34,7 @@ You MUST write this line before proceeding. Do not skip it.
 
 1. Read the `one-shot:holistic-reviewer` agent definition file in full. Codex does not have access to your agent files — you must inline the full text.
 
-2. Invoke SkillTool('codex:rescue') with `--fresh`. Pass a single prompt containing all three of:
+2. Invoke SkillTool("/codex:rescue --fresh --foreground \"{prompt}\"). Pass a prompt (the {prompt} variable) containing all three of:
    - The full text of the holistic-reviewer agent definition
    - The absolute path to the implementation plan
    - The base branch to diff against
