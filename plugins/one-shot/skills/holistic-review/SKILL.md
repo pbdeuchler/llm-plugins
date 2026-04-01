@@ -2,7 +2,7 @@
 name: holistic-review
 description: Use when performing a holistic code review of an implementation - routes to codex:rescue or falls back to a direct subagent
 context: fork
-allowed-tools: Bash(node *)
+allowed-tools: Bash(node *), Read(*)
 ---
 
 # Holistic Review
