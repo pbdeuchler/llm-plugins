@@ -34,7 +34,7 @@ You MUST write this line before proceeding. Do not skip it.
 
 **This is the primary path. You may not skip it when codex:rescue is available. Falling through to the fallback path when codex:rescue is detected is a failure.**
 
-1. Get the `one-shot:holistic-reviewer` agent definition file's fully qualified path: ${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md
+1. Get the `one-shot:holistic-reviewer` agent definition file's fully qualified path: ${CLAUDE_PLUGIN_ROOT}/agents/holistic-reviewer.md. **There is no reason to read this file**, if you can expand this path then the file exists.
 
 2. Invoke SkillTool("/codex:rescue --fresh --foreground \"{prompt}\"). Pass a prompt (the {prompt} variable) containing all three of:
    - The path of the holistic-reviewer agent definition
