@@ -1,5 +1,41 @@
 # Changelog
 
+## [one-shot] 0.4.8
+
+Holistic reviewer overhaul and context management improvements.
+
+**New:**
+
+- `holistic-review` skill that routes to `codex:rescue` for dueling-model review when available, falling back to a direct subagent
+- Multi-persona holistic reviewer: panel of staff engineers (systems, distributed systems, security, infra ops, product) that discuss findings from different perspectives
+- Tests-first review methodology: reviewer reads tests before implementation code to assess coverage and falsify assumptions
+- Mandatory context compaction after each step's code review — prunes context no longer needed for remaining work
+
+**Changed:**
+
+- Implementation steps are now ordered for optimal context management (foundational pieces first, independent work early)
+- Holistic reviewer now reviews across seven dimensions (added test coverage) instead of six
+- Removed redundant final review from `execute-one-shot` skill — holistic review is now handled by the `holistic-review` skill invoked from the command
+- PR description quality is now explicitly enforced with troubleshooting guidance for common errors
+
+## [autoresearch] 0.3.1
+
+**Fixed:**
+
+- Formatting cleanup in `autoresearch-create` skill (whitespace, JSON readability)
+
+## [blank-slate-review] 0.1.1
+
+**Fixed:**
+
+- Minor post-release fixes
+
+## [quick-plan] 0.1.1
+
+**Fixed:**
+
+- Minor post-release fixes
+
 ## [one-shot] 0.4.0
 
 Use codex for holistic reviewer

@@ -30,7 +30,7 @@ Tightly scoped implementation planning with a panel of specialist engineer subag
 
 ### one-shot
 
-Executes an implementation plan end-to-end in a single session: creates a branch, implements each step with TDD, runs per-step code review (fixing all severity levels), performs a holistic final review, and opens a PR. Rejects plans too large or vague to complete in 5 steps at a high quality bar.
+Executes an implementation plan end-to-end in a single session: creates a branch, implements each step with TDD, runs per-step code review (fixing all severity levels), performs a holistic final review via a multi-persona staff engineer panel (with optional dueling-model review via Codex), and opens a PR. Rejects plans too large or vague to complete in 5 steps at a high quality bar.
 
 ```
 /one-shot:start <absolute-plan-file-path> [seed-commitish]
