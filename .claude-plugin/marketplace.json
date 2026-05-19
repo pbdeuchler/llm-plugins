@@ -9,6 +9,16 @@
   },
   "plugins": [
     {
+      "name": "house-rules",
+      "description": "Behavioral guardrails and skills distilled from past user-correction patterns",
+      "version": "0.1.0",
+      "source": "./plugins/house-rules",
+      "author": {
+        "name": "PBD",
+        "email": "pbdeuchler@gmail.com"
+      }
+    },
+    {
       "name": "house-style",
       "description": "House style for software development",
       "version": "1.0.0",

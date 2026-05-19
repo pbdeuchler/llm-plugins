@@ -1,0 +1,20 @@
+{
+  "name": "house-rules",
+  "version": "0.1.0",
+  "description": "Deterministic guardrails and skills that prevent recurring user-correction patterns. Sister plugin to house-style.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-rules",
+  "repository": "https://github.com/pbdeuchler/llm-plugins.git",
+  "license": "UNLICENSED",
+  "keywords": [
+    "hooks",
+    "skills",
+    "discipline",
+    "guardrails",
+    "git",
+    "workflow"
+  ]
+}

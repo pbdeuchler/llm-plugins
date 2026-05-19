@@ -1,5 +1,17 @@
 # Changelog
 
+## [house-rules] 0.1.0
+
+Initial release of the house-rules plugin. Distills recurring user-correction patterns mined from ~566 prior Claude Code and Codex sessions into reusable skills and Claude Code hooks.
+
+**New:**
+
+- Plugin scaffold (`plugins/house-rules/`) with cross-compatible `.claude-plugin/` and `.codex-plugin/` manifests
+- Hooks (Claude Code): `strip-claude-coauthor` (deny commits crediting Claude/Anthropic/Codex as co-author), `gate-git-write-ops` (ask before commit/push unless the latest user message contains a commit/push verb), `flag-pattern-comments` (warn when edits add leading `// pattern:` / `// note:` annotations), `correction-and-reference-signal` (inject reminder when user shares a URL near "use/see/read" or shouts/repeats a correction)
+- Skills (Claude Code + Codex): `no-claude-coauthor`, `lift-the-reference`, `minimal-edit-scope`, `verify-ui-changes`, `tests-or-not-done`, `respect-analysis-mode`, `respect-output-mode`, `root-cause-not-symptom`, `domain-checkpoint`, `checkpoint-plan-frequently`
+- `templates/AGENTS.md` - drop-in for `~/.codex/AGENTS.md` so Codex sessions get the same defaults Claude Code gets from `~/.claude/CLAUDE.md`
+- `templates/codex-rules.md` + `codex-rules.snippet` - recommended `prefix_rule(...)` additions for `~/.codex/rules/default.rules`, closing the structural gap (currently the file allows essentially only `cargo test`)
+
 ## [one-shot] 0.4.8
 
 Holistic reviewer overhaul and context management improvements.

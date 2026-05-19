@@ -36,6 +36,14 @@ Executes an implementation plan end-to-end in a single session: creates a branch
 /one-shot:start <absolute-plan-file-path> [seed-commitish]
 ```
 
+### house-rules
+
+Behavioral guardrails distilled from a corpus of ~566 prior Claude Code and Codex sessions. Each skill and hook maps to a specific recurring user-correction pattern -- co-author trailers, scope creep, unverified UI changes, ignoring referenced implementations, code in analysis turns, missing tests, etc. Hooks (Claude Code) enforce the deterministic ones; skills (cross-compatible) cover the judgment calls. Ships an `AGENTS.md` template and `default.rules` snippet so Codex gets the same defaults.
+
+```
+/plugin install house-rules@llm-plugins
+```
+
 ### house-style
 
 Opinionated development guides covering coding patterns, testing strategies, database access, and technical writing. Skills activate automatically when relevant -- functional core / imperative shell, defense in depth, property-based testing, PostgreSQL conventions, and more.
@@ -67,6 +75,7 @@ All plugins are available from the `llm-plugins` marketplace:
 ```bash
 /plugin install autoresearch@llm-plugins
 /plugin install blank-slate-review@llm-plugins
+/plugin install house-rules@llm-plugins
 /plugin install house-style@llm-plugins
 /plugin install one-shot@llm-plugins
 /plugin install quick-plan@llm-plugins

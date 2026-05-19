@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/flag-pattern-comments.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/correction-and-reference-signal.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

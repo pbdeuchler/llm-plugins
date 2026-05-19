@@ -1,0 +1,39 @@
+{
+  "name": "house-rules",
+  "version": "0.1.0",
+  "description": "Deterministic guardrails and skills that prevent recurring user-correction patterns. Sister plugin to house-style.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-rules",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "discipline",
+    "guardrails",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "House Rules",
+    "shortDescription": "Behavioral guardrails distilled from past corrections.",
+    "longDescription": "Distills recurring user-correction patterns from prior sessions into reusable skills (and Claude Code hooks). Covers commit hygiene, scope discipline, reference-grounded implementation, UI-change verification, analysis-vs-implementation mode, and test coverage discipline.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-rules",
+    "defaultPrompt": [
+      "Apply house-rules guardrails to my current task.",
+      "Did I just violate a recurring correction pattern?",
+      "What scope am I committing to before I touch code?"
+    ],
+    "brandColor": "#7C2D12"
+  }
+}
