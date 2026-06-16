@@ -1,5 +1,14 @@
 # Changelog
 
+## [tooling] 0.3.0
+
+Enforce uv/uvx over direct python/pip/pipx/venv calls when uv is installed.
+
+**New:**
+
+- Skill `howto-uv` - command mappings from `python`/`pip`/`pipx`/`venv` to `uv run`/`uv pip`/`uvx`/`uv venv`, with rationale and exceptions
+- Hook (Claude Code) `prefer-uv` - PreToolUse on Bash; denies direct python/pip/pipx/venv invocations and returns the uv equivalent, but only when `uv` is on PATH. Allows `python --version` probes, `uv run`/`uvx` calls, and incidental "python" mentions in arguments or strings
+
 ## [house-rules] 0.1.0
 
 Initial release of the house-rules plugin. Distills recurring user-correction patterns mined from ~566 prior Claude Code and Codex sessions into reusable skills and Claude Code hooks.

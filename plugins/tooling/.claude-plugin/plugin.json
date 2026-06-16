@@ -1,7 +1,7 @@
 {
   "name": "tooling",
   "description": "Skills for effective use of developer tooling",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "PBD",
     "email": "pbdeuchler@gmail.com"
@@ -14,6 +14,9 @@
     "tooling",
     "ast-grep",
     "code-search",
-    "refactoring"
+    "refactoring",
+    "uv",
+    "python",
+    "hooks"
   ]
 }
