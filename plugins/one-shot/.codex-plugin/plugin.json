@@ -1,0 +1,39 @@
+{
+  "name": "one-shot",
+  "version": "0.4.15",
+  "description": "Skills and commands to perform one shot prompting in a standardized workflow.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/one-shot",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "one shot",
+    "prompting",
+    "workflow",
+    "prompt engineering"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "One-Shot",
+    "shortDescription": "Execute an implementation plan end-to-end in one session.",
+    "longDescription": "Implement, test, review, and open a PR from a plan in a single standardized pass, with a holistic review step before handoff.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/one-shot",
+    "defaultPrompt": [
+      "Execute this implementation plan end-to-end.",
+      "Implement, test, and open a PR for this plan.",
+      "Run a holistic review of the change I just made."
+    ],
+    "brandColor": "#B45309"
+  }
+}

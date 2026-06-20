@@ -1,0 +1,39 @@
+{
+  "name": "house-style",
+  "version": "1.1.0",
+  "description": "House style for software development: coding patterns and reusable skills for ed3d projects. Sister plugin to house-rules.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-style",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "best-practices",
+    "workflows",
+    "github",
+    "issues"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "House Style",
+    "shortDescription": "Coding standards and reusable development skills.",
+    "longDescription": "House style for software development: FCIS architecture, testing discipline, Postgres patterns, technical writing, and GitHub issue authoring and hygiene. Reusable skills applied across ed3d projects. Sister plugin to house-rules.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-style",
+    "defaultPrompt": [
+      "Apply house-style conventions to my current task.",
+      "Write a thorough GitHub issue for this problem.",
+      "Run a hygiene pass over this issue's labels and markdown."
+    ],
+    "brandColor": "#1E3A8A"
+  }
+}

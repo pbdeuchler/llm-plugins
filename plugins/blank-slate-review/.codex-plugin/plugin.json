@@ -1,0 +1,39 @@
+{
+  "name": "blank-slate-review",
+  "version": "0.1.2",
+  "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/blank-slate-review",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "code review",
+    "codebase analysis",
+    "multi-persona",
+    "engineering review",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Blank-Slate Review",
+    "shortDescription": "Multi-perspective codebase review with severity-classified findings.",
+    "longDescription": "A scout maps the structure, then a panel of staff engineers reviews sampled files across seven dimensions and returns severity-classified findings with holistic remediation prose.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/blank-slate-review",
+    "defaultPrompt": [
+      "Run a blank-slate review of this codebase.",
+      "Review this directory and classify findings by severity.",
+      "Give me a multi-perspective review of these changes."
+    ],
+    "brandColor": "#BE123C"
+  }
+}

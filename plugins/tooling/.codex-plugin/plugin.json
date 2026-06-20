@@ -1,0 +1,43 @@
+{
+  "name": "tooling",
+  "version": "0.3.1",
+  "description": "Skills for effective use of developer tooling. Sister plugin to house-style and house-rules.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/tooling",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "skills",
+    "tooling",
+    "ast-grep",
+    "code-search",
+    "refactoring",
+    "uv",
+    "python",
+    "hooks"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
+  "interface": {
+    "displayName": "Tooling",
+    "shortDescription": "Effective use of developer tooling.",
+    "longDescription": "Skills (and Claude Code hooks) for getting the most out of developer tooling: structural code search and rewriting with ast-grep, markdown knowledge-base search with qmd, and uv/uvx for Python execution and package management.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/tooling",
+    "defaultPrompt": [
+      "Search this codebase structurally with ast-grep.",
+      "Run this Python with uv instead of pip and venv.",
+      "Search my markdown notes for relevant context."
+    ],
+    "brandColor": "#0F766E"
+  }
+}

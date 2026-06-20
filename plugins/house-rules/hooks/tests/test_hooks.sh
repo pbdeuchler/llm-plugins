@@ -103,40 +103,6 @@ out=$(printf '{"tool_name":"Bash","tool_input":{"command":"echo hi"}}\n' \
   | python3 "$HOOKS/flag-pattern-comments.py")
 chk "" "$out" "non-edit tool silent"
 
-# --- correction-and-reference-signal ----------------------------------------
-
-out=$(printf '{"prompt":"see these docs: https://docs.kalshi.com/x and implement"}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-echo "$out" | grep -q 'reference URL' \
-  && chk yes yes "URL+ref-verb injects" \
-  || chk yes no  "URL+ref-verb injects"
-
-out=$(printf '{"prompt":"THERE IS NO DATASOURCE UID. THE METRICS COME FROM A GRAFANA CLOUD INTEGRATION."}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-echo "$out" | grep -q 're-correcting' \
-  && chk yes yes "shouty correction injects" \
-  || chk yes no  "shouty correction injects"
-
-out=$(printf '{"prompt":"I told you to use the existing implementation"}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-echo "$out" | grep -q 're-correcting' \
-  && chk yes yes "told-you triggers" \
-  || chk yes no  "told-you triggers"
-
-out=$(printf '{"prompt":"That is incorrect, the orderbook is one-sided"}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-echo "$out" | grep -q 're-correcting' \
-  && chk yes yes "that-is-incorrect triggers" \
-  || chk yes no  "that-is-incorrect triggers"
-
-out=$(printf '{"prompt":"just a quick question about syntax"}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-chk "" "$out" "benign prompt silent"
-
-out=$(printf '{"prompt":"check out https://example.com when you get a chance"}\n' \
-  | python3 "$HOOKS/correction-and-reference-signal.py")
-chk "" "$out" "bare URL without ref-verb silent"
-
 echo ""
 echo "=== Total: $pass passed, $fail failed ==="
 [ $fail -eq 0 ]

@@ -11,7 +11,7 @@
     {
       "name": "house-rules",
       "description": "Behavioral guardrails and skills distilled from past user-correction patterns",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": "./plugins/house-rules",
       "author": {
         "name": "PBD",
@@ -21,7 +21,7 @@
     {
       "name": "house-style",
       "description": "House style for software development",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": "./plugins/house-style",
       "author": {
         "name": "PBD",
@@ -31,7 +31,7 @@
     {
       "name": "tooling",
       "description": "Skills for effective use of developer tooling",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "source": "./plugins/tooling",
       "author": {
         "name": "PBD",
@@ -41,7 +41,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.4.14",
+      "version": "0.4.15",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
@@ -51,7 +51,7 @@
     {
       "name": "autoresearch",
       "description": "Autonomous experiment loop for optimizing any measurable target",
-      "version": "0.3.1",
+      "version": "0.3.2",
       "source": "./plugins/autoresearch",
       "author": {
         "name": "PBD",
@@ -61,7 +61,7 @@
     {
       "name": "quick-plan",
       "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "source": "./plugins/quick-plan",
       "author": {
         "name": "PBD",
@@ -71,7 +71,7 @@
     {
       "name": "blank-slate-review",
       "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "source": "./plugins/blank-slate-review",
       "author": {
         "name": "PBD",

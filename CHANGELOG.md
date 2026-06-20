@@ -1,5 +1,41 @@
 # Changelog
 
+## [tooling] 0.3.1
+
+Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.
+
+## [one-shot] 0.4.15
+
+Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.
+
+## [autoresearch] 0.3.2
+
+Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.
+
+## [quick-plan] 0.1.2
+
+Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.
+
+## [blank-slate-review] 0.1.2
+
+Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.
+
+## [house-style] 1.1.0
+
+Two paired GitHub-issue skills, plus a Codex manifest so the plugin installs on Codex as well as Claude Code.
+
+**New:**
+
+- Skill `authoring-issues` - mandates exploring the relevant code before writing, reasoning any proposed solution, and structuring the issue (summary, what/why, references, nuances, open questions, acceptance criteria). Adds professionalism and no-sensitive-info discipline for public repos.
+- Skill `issue-hygiene` - mechanical pass over title accuracy, labels/assignees/milestone, and valid markdown via the `gh` CLI; does not judge content quality.
+- `.codex-plugin/plugin.json` exposing `./skills/` to Codex (previously Claude Code only).
+
+## [house-rules] 0.2.0
+
+**Removed:**
+
+- Hook (Claude Code) `correction-and-reference-signal` and its `UserPromptSubmit` registration.
+
 ## [tooling] 0.3.0
 
 Enforce uv/uvx over direct python/pip/pipx/venv calls when uv is installed.

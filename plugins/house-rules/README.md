@@ -20,7 +20,6 @@ Claude Code and Codex sessions.
 | `strip-claude-coauthor` | PreToolUse / Bash | Denies any `git commit` carrying a `Co-Authored-By: Claude/Anthropic/Codex` trailer. |
 | `gate-git-write-ops` | PreToolUse / Bash | Asks for approval before `git commit`/`git push` if the latest user message contains no commit/push verb. |
 | `flag-pattern-comments` | PostToolUse / Write\|Edit | Warns when an edit adds leading `// pattern:`, `// note:`, `// added:` annotation comments. |
-| `correction-and-reference-signal` | UserPromptSubmit | Detects URLs near "use/read/see" verbs (-> reminder to fetch) and detects ALL-CAPS / "that is incorrect" / "I told you" (-> reminder to re-read recent context before acting). |
 
 ### Skills (Claude Code + Codex)
 

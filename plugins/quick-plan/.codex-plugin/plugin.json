@@ -1,0 +1,39 @@
+{
+  "name": "quick-plan",
+  "version": "0.1.2",
+  "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/quick-plan",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "planning",
+    "implementation",
+    "design",
+    "architecture",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Quick Plan",
+    "shortDescription": "Tightly scoped implementation plans via a specialist panel.",
+    "longDescription": "Produces high-quality plans of five steps or fewer, each roughly one story point, vetted by a panel of specialist engineer subagents and ready to hand to an implementer.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/quick-plan",
+    "defaultPrompt": [
+      "Make a tightly scoped plan for this change.",
+      "Plan this feature in five steps or fewer.",
+      "Have the specialist panel review my approach."
+    ],
+    "brandColor": "#0369A1"
+  }
+}

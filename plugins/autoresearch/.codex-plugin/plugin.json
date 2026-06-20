@@ -1,0 +1,38 @@
+{
+  "name": "autoresearch",
+  "version": "0.3.2",
+  "description": "Autonomous experiment loop for optimizing any measurable target.",
+  "author": {
+    "name": "PBD",
+    "email": "pbdeuchler@gmail.com",
+    "url": "https://github.com/pbdeuchler"
+  },
+  "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/autoresearch",
+  "repository": "https://github.com/pbdeuchler/llm-plugins",
+  "license": "UNLICENSED",
+  "keywords": [
+    "autoresearch",
+    "optimization",
+    "experiments",
+    "autonomous"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Autoresearch",
+    "shortDescription": "Autonomous experiment loop for any measurable target.",
+    "longDescription": "Point it at a metric and it iteratively tries ideas, benchmarks them, keeps improvements, discards regressions, and logs everything until a time or iteration limit is reached.",
+    "developerName": "PBD",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/autoresearch",
+    "defaultPrompt": [
+      "Start an autoresearch loop to optimize this metric.",
+      "Set up experiments to minimize latency here.",
+      "Resume my autoresearch session."
+    ],
+    "brandColor": "#6D28D9"
+  }
+}

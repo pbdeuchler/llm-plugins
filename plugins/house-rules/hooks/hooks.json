@@ -12,17 +12,6 @@
           }
         ]
       }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/correction-and-reference-signal.py\"",
-            "timeout": 5
-          }
-        ]
-      }
     ]
   }
 }
