@@ -1,7 +1,7 @@
 {
   "name": "house-style",
   "version": "2.0.1",
-  "description": "House style for software development: coding patterns and reusable skills for ed3d projects. Sister plugin to house-rules.",
+  "description": "House style for software development.",
   "author": {
     "name": "PBD",
     "email": "pbdeuchler@gmail.com",
@@ -15,7 +15,7 @@
   "interface": {
     "displayName": "House Style",
     "shortDescription": "Coding standards and reusable development skills.",
-    "longDescription": "House style for software development: FCIS architecture, testing discipline, Postgres patterns, technical writing, and GitHub issue authoring and hygiene. Reusable skills applied across ed3d projects. Sister plugin to house-rules.",
+    "longDescription": "House style for software development: Good code, testing discipline, Postgres patterns, technical writing, and GitHub issue authoring and hygiene. Sister plugin to house-rules.",
     "developerName": "PBD",
     "category": "Developer Tools",
     "capabilities": ["Interactive", "Read"],
