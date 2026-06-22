@@ -1,6 +1,6 @@
 ---
 name: coding-effectively
-description: ALWAYS use before any implementation work or planning: designing, writing, editing, refactoring, debugging, or generating source code, tests, scripts, config-as-code, or behavior-affecting files. This is a baseline engineering skill and should be invoked even when a more specific language, framework, testing, or database skill also applies.
+description: "ALWAYS use before any implementation work or planning: designing, writing, editing, refactoring, debugging, or generating source code, tests, scripts, config-as-code, or behavior-affecting files. This is a baseline engineering skill and should be invoked even when a more specific language, framework, testing, or database skill also applies."
 ---
 
 # Coding Effectively
