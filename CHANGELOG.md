@@ -152,3 +152,10 @@ Initial release of the tooling plugin.
 **New:**
 
 - `howto-ast-grep` skill - structural code search and rewriting with ast-grep CLI patterns, metavariable syntax, and language-specific examples
+
+## [house-style] 2.0.0
+
+**Changed:**
+
+- Completely rewrite `coding-effectively`
+- Remove `howto-function-core-imperative-shell`
