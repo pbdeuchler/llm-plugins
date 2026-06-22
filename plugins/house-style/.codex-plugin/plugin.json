@@ -1,6 +1,6 @@
 {
   "name": "house-style",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "House style for software development.",
   "author": {
     "name": "PBD",
@@ -10,7 +10,13 @@
   "homepage": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-style",
   "repository": "https://github.com/pbdeuchler/llm-plugins",
   "license": "UNLICENSED",
-  "keywords": ["skills", "best-practices", "workflows", "github", "issues"],
+  "keywords": [
+    "skills",
+    "best-practices",
+    "workflows",
+    "github",
+    "issues"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "House Style",
@@ -18,7 +24,10 @@
     "longDescription": "House style for software development: Good code, testing discipline, Postgres patterns, technical writing, and GitHub issue authoring and hygiene. Sister plugin to house-rules.",
     "developerName": "PBD",
     "category": "Developer Tools",
-    "capabilities": ["Interactive", "Read"],
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
     "websiteURL": "https://github.com/pbdeuchler/llm-plugins/tree/master/plugins/house-style",
     "defaultPrompt": [
       "Apply house-style conventions to my current task.",
