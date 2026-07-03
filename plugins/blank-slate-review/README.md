@@ -52,7 +52,7 @@ Findings are followed by holistic remediation prose that groups related issues i
 ## Design Decisions
 
 - **Observation only** -- No code is written, no PRs created, no plans generated. Pure review.
-- **Four severity levels** -- Finer granularity than holistic-reviewer's three levels, appropriate for a standalone review with no fix-and-re-review loop.
+- **Four severity levels** -- Finer granularity than house-style holistic-review's three levels, appropriate for a standalone review with no fix-and-re-review loop.
 - **Holistic remediation** -- Groups findings into systemic themes rather than prescribing individual fixes, helping engineers see the forest not just the trees.
 - **Scout before review** -- Structural mapping avoids wasting reviewer context on irrelevant files and enables intelligent sampling.
 - **Fan-out for scale** -- Large codebases are partitioned by module so each reviewer operates within effective context limits.

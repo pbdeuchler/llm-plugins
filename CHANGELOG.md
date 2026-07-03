@@ -1,5 +1,25 @@
 # Changelog
 
+## [house-style] 2.1.0
+
+Extract the one-shot holistic reviewer into a standalone skill.
+
+**New:**
+
+- Skill `holistic-review` - the multi-persona staff engineer panel review, lifted from the `one-shot:holistic-reviewer` agent. Works without an implementation plan (reconstructs intent from PR/commits, with lowered adherence confidence), auto-detects the base branch (origin/HEAD, else `main`/`master`), and hardens the break-the-tests step into a mandatory mutation protocol: green baseline first, predicted-vs-actual failure tracking, immediate revert of every mutation, and a Mutation Results table in the output contract.
+
+## [one-shot] 0.5.0
+
+Delegate the holistic review methodology to house-style.
+
+**Changed:**
+
+- Skill `holistic-review` now routes to the `house-style:holistic-review` skill (via codex:rescue or a general-purpose subagent). The `house-style` plugin (>= 2.1.0) is now required for the final review step.
+
+**Removed:**
+
+- Agent `holistic-reviewer` - moved to house-style as the `holistic-review` skill.
+
 ## [tooling] 0.3.1
 
 Add a Codex (`.codex-plugin`) manifest so the plugin installs on Codex as well as Claude Code.

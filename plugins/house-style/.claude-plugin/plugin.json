@@ -1,7 +1,7 @@
 {
   "name": "house-style",
   "description": "House style for software development",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "author": {
     "name": "PBD",
     "email": "pbdeuchler@gmail.com"
@@ -17,6 +17,7 @@
     "best-practices",
     "workflows",
     "github",
-    "issues"
+    "issues",
+    "code-review"
   ]
 }

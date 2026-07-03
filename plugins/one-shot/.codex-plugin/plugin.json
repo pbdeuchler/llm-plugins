@@ -1,6 +1,6 @@
 {
   "name": "one-shot",
-  "version": "0.4.15",
+  "version": "0.5.0",
   "description": "Skills and commands to perform one shot prompting in a standardized workflow.",
   "author": {
     "name": "PBD",

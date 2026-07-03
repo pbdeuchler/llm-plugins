@@ -21,7 +21,7 @@
     {
       "name": "house-style",
       "description": "House style for software development",
-      "version": "2.0.2",
+      "version": "2.1.0",
       "source": "./plugins/house-style",
       "author": {
         "name": "PBD",
@@ -41,7 +41,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.4.15",
+      "version": "0.5.0",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",

@@ -30,7 +30,7 @@ Tightly scoped implementation planning with a panel of specialist engineer subag
 
 ### one-shot
 
-Executes an implementation plan end-to-end in a single session: creates a branch, implements each step with TDD, runs per-step code review (fixing all severity levels), performs a holistic final review via a multi-persona staff engineer panel (with optional dueling-model review via Codex), and opens a PR. Rejects plans too large or vague to complete in 5 steps at a high quality bar.
+Executes an implementation plan end-to-end in a single session: creates a branch, implements each step with TDD, runs per-step code review (fixing all severity levels), performs a holistic final review via the `house-style:holistic-review` skill (with optional dueling-model review via Codex), and opens a PR. Rejects plans too large or vague to complete in 5 steps at a high quality bar. Requires the `house-style` plugin for the final review step.
 
 ```
 /one-shot:start <absolute-plan-file-path> [seed-commitish]
@@ -46,7 +46,7 @@ Behavioral guardrails distilled from a corpus of ~566 prior Claude Code and Code
 
 ### house-style
 
-Opinionated development guides covering coding patterns, testing strategies, database access, and technical writing. Skills activate automatically when relevant -- functional core / imperative shell, defense in depth, property-based testing, PostgreSQL conventions, and more.
+Opinionated development guides covering coding patterns, testing strategies, database access, and technical writing. Skills activate automatically when relevant -- defense in depth, property-based testing, PostgreSQL conventions, and more. Includes `holistic-review`: a multi-persona staff engineer panel that reviews a completed implementation against its plan (or reconstructed intent) across seven dimensions, with mandatory mutation testing to prove the tests catch real breakage.
 
 ```
 /plugin install house-style@llm-plugins

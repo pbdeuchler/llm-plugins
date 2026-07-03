@@ -33,15 +33,11 @@ Rejects plans that are too large or too vague to complete in 5 steps at a high q
 
 ### Skill: `holistic-review`
 
-Routes the final holistic code review to the best available backend. Prefers `codex:rescue` for a true clean-room dueling-model review; falls back to a direct `holistic-reviewer` subagent when Codex is unavailable.
+Routes the final holistic code review to the best available backend. Prefers `codex:rescue` for a true clean-room dueling-model review; falls back to a general-purpose subagent when Codex is unavailable. The review methodology itself lives in the `house-style:holistic-review` skill — a multi-persona panel of staff engineers (systems performance, distributed systems, security, infrastructure operations, product strategy) that reviews the full diff across seven dimensions using a tests-first methodology, including mandatory mutation testing (deliberately breaking crucial code to verify tests fail, then reverting). **Requires the `house-style` plugin (>= 2.1.0).**
 
 ### Agent: `task-implementer`
 
 Sonnet-powered subagent that implements individual tasks. Follows TDD (test first, then implement), applies relevant coding skills, runs verification (tests/build/lint), commits work, and reports back with evidence.
-
-### Agent: `holistic-reviewer`
-
-Opus-powered multi-persona panel of staff engineers that evaluates the full diff against the original plan. The panel includes specialists in systems performance, distributed systems, security, infrastructure operations, and product strategy. Reviews across seven dimensions: correctness, elegance, simplicity, design principles, idiomatic usage, plan adherence, and test coverage. Uses a tests-first methodology — reviewing tests before implementation to validate coverage and falsify assumptions. Produces a structured report with severity-classified findings. PASS requires zero issues at all severity levels.
 
 ## Design Decisions
 
@@ -50,5 +46,6 @@ Opus-powered multi-persona panel of staff engineers that evaluates the full diff
 - **Mandatory context compaction** — After each step's code review, context is pruned to keep the session efficient for remaining work. Skipping compaction is treated as a failure.
 - **Three-strike rule** — If the same review issues persist after three fix-and-review cycles, execution stops rather than looping indefinitely.
 - **Minor issues are not optional** — All severity levels must be resolved before a step is considered complete.
-- **Tests-first review** — The holistic reviewer reads tests before implementation code, using them as a guide to assess coverage adequacy and identify untested critical paths.
+- **Tests-first review** — The holistic reviewer reads tests before implementation code, using them as a guide to assess coverage adequacy, then mutation-tests crucial code paths to prove the tests actually catch breakage.
+- **Review methodology lives in house-style** — The reviewer itself is the `house-style:holistic-review` skill, so the same review is usable outside the one-shot workflow; this plugin only routes it to the best backend.
 - **Dueling-model review** — When Codex is available, the holistic review runs on a separate model for a true clean-room perspective, preventing in-context bias from the implementation session.
