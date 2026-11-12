@@ -2,7 +2,6 @@
 name: security-engineer
 description: Use when evaluating implementation approaches for security implications, threat surface changes, input validation boundaries, authentication and authorization patterns, or potential attack path escalation
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 
 # Security Engineer

@@ -2,7 +2,6 @@
 name: experiment-runner
 description: Use when executing a single autoresearch experiment iteration - implements code changes, runs benchmark, evaluates metrics, logs results to JSONL, and manages git state (commit or revert). Returns structured result to the orchestrator.
 tools: Read, Edit, Write, Bash, Grep, Glob
-model: sonnet
 ---
 
 # Experiment Runner

@@ -2,7 +2,6 @@
 name: product-lead
 description: Use when evaluating how proposed changes fit into long-term system evolution, assessing flexibility for future requirements, or identifying scope and extensibility tradeoffs during planning
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 
 # Product Lead

@@ -37,7 +37,7 @@ Routes the final holistic code review to the best available backend. Prefers `co
 
 ### Agent: `task-implementer`
 
-Sonnet-powered subagent that implements individual tasks. Follows TDD (test first, then implement), applies relevant coding skills, runs verification (tests/build/lint), commits work, and reports back with evidence.
+Subagent that implements individual tasks. Follows TDD (test first, then implement), applies relevant coding skills, runs verification (tests/build/lint), commits work, and reports back with evidence.
 
 ## Design Decisions
 

@@ -1,8 +1,7 @@
 ---
 name: codebase-reviewer
-description: Use when performing a structured codebase review from a blank slate -- no existing plan or prior context. Receives a structural inventory and sampled file contents, analyzes across seven dimensions, and returns severity-classified findings with holistic remediation. Opus-powered multi-persona staff engineer panel.
+description: Use when performing a structured codebase review from a blank slate -- no existing plan or prior context. Receives a structural inventory and sampled file contents, analyzes across seven dimensions, and returns severity-classified findings with holistic remediation.
 tools: Read, Grep, Glob, Bash
-model: opus
 ---
 
 # Codebase Reviewer

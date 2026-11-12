@@ -47,7 +47,7 @@ Orchestrates the full lifecycle: setup, loop control, subagent dispatch, strateg
 
 ### Agent: `experiment-runner`
 
-Sonnet-powered subagent that executes a single iteration. Reads files, implements changes, runs the benchmark, evaluates metrics, computes confidence, logs to JSONL, manages git state, and returns a structured result block.
+Subagent that executes a single iteration. Reads files, implements changes, runs the benchmark, evaluates metrics, computes confidence, logs to JSONL, manages git state, and returns a structured result block.
 
 ### Sub-Skills (internal)
 

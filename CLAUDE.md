@@ -10,7 +10,7 @@ When documenting Task tool invocations in skills or agent prompts, use XML-style
 
 ```
 <invoke name="Task">
-<parameter name="subagent_type">house-style:sonnet-general-purpose</parameter>
+<parameter name="subagent_type">general-purpose</parameter>
 <parameter name="description">Brief description of what the subagent does</parameter>
 <parameter name="prompt">
 The prompt content goes here.

@@ -13,11 +13,11 @@ Orchestrate a structured codebase review. You drive a two-phase pipeline -- scou
 
 ### 1. Scout the Codebase
 
-Dispatch a Haiku-powered subagent to produce a structural inventory of the codebase within the given scope. The scout maps structure without reading file contents in detail.
+Dispatch a subagent to produce a structural inventory of the codebase within the given scope. The scout maps structure without reading file contents in detail.
 
 ```
 <invoke name="Agent">
-<parameter name="subagent_type">ed3d-basic-agents:haiku-general-purpose</parameter>
+<parameter name="subagent_type">general-purpose</parameter>
 <parameter name="description">Scout codebase structure</parameter>
 <parameter name="prompt">
 You are a codebase scout. Your job is to produce a compact structural inventory of a codebase without reading full file contents. Be fast and precise.

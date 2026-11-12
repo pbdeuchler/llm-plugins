@@ -14,7 +14,7 @@ Autonomous experiment loop that optimizes any measurable target. Point it at a m
 
 ### blank-slate-review
 
-Multi-perspective engineering review of any codebase -- or a scoped subset -- from a single command. A Haiku-powered scout maps the structure, then an Opus-powered panel of staff engineers reviews sampled files across seven dimensions (correctness, consistency, simplicity, design principles, idiomatic usage, security, test quality) and returns severity-classified findings with holistic remediation prose. For large codebases, files are partitioned by module and reviewed in parallel.
+Multi-perspective engineering review of any codebase -- or a scoped subset -- from a single command. A scout maps the structure, then a panel of staff engineers reviews sampled files across seven dimensions (correctness, consistency, simplicity, design principles, idiomatic usage, security, test quality) and returns severity-classified findings with holistic remediation prose. For large codebases, files are partitioned by module and reviewed in parallel.
 
 ```
 /blank-slate-review:start [scope]
