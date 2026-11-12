@@ -1,6 +1,6 @@
 # blank-slate-review
 
-Multi-perspective engineering review of any codebase -- or a scoped subset -- from a single command. A scout maps the structure, then an Opus-powered panel of staff engineers reviews sampled files across seven dimensions and returns severity-classified findings with holistic remediation prose.
+Multi-perspective engineering review of any codebase -- or a scoped subset -- from a single command. A scout maps the structure, then a panel of staff engineers reviews sampled files across seven dimensions and returns severity-classified findings with holistic remediation prose.
 
 ## Usage
 
@@ -16,11 +16,11 @@ The command validates the scope, dispatches a scout to map codebase structure, s
 
 ### Scout Phase
 
-A Haiku-powered scout subagent maps the codebase without reading every file: languages, frameworks, entry points, test locations, file counts by type. This structural inventory drives file sampling and the fan-out decision.
+A scout subagent maps the codebase without reading every file: languages, frameworks, entry points, test locations, file counts by type. This structural inventory drives file sampling and the fan-out decision.
 
 ### Review Phase
 
-An Opus-powered agent embodies a panel of staff engineers who discuss findings from different perspectives before converging on structured output. The panel reviews sampled files across seven dimensions:
+An agent embodies a panel of staff engineers who discuss findings from different perspectives before converging on structured output. The panel reviews sampled files across seven dimensions:
 
 | Dimension | Focus |
 |-----------|-------|

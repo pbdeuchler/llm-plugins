@@ -1,5 +1,14 @@
 # Changelog
 
+## [autoresearch] 0.3.3, [blank-slate-review] 0.1.3, [one-shot] 0.5.1, [quick-plan] 0.1.3
+
+Remove model-specific pins and wording.
+
+**Changed:**
+
+- Agents no longer set `model:` in frontmatter; they inherit the session model.
+- blank-slate-review scout dispatches to `general-purpose` instead of a model-named agent type.
+
 ## [house-style] 2.1.0
 
 Extract the one-shot holistic reviewer into a standalone skill.
@@ -129,7 +138,7 @@ Initial release of the blank-slate-review plugin.
 
 - `/blank-slate-review:start` command -- validates optional scope and launches the review pipeline
 - `execute-review` skill -- orchestrates scout, file sampling, fan-out decision, and reviewer dispatch
-- `codebase-reviewer` agent -- Opus-powered multi-persona panel with seven analysis dimensions, four severity levels, and holistic remediation synthesis
+- `codebase-reviewer` agent -- multi-persona panel with seven analysis dimensions, four severity levels, and holistic remediation synthesis
 
 ## [quick-plan] 0.1.0
 

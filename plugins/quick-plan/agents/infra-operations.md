@@ -2,7 +2,6 @@
 name: infra-operations
 description: Use when evaluating implementation approaches for operational impact, deployability, observability, failure modes, rollback safety, or maintainability during planning
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 
 # Infrastructure Operations Engineer

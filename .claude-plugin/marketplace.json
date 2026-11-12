@@ -41,7 +41,7 @@
     {
       "name": "one-shot",
       "description": "Plugins for one shot prompting",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "source": "./plugins/one-shot",
       "author": {
         "name": "PBD",
@@ -51,7 +51,7 @@
     {
       "name": "autoresearch",
       "description": "Autonomous experiment loop for optimizing any measurable target",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "source": "./plugins/autoresearch",
       "author": {
         "name": "PBD",
@@ -61,7 +61,7 @@
     {
       "name": "quick-plan",
       "description": "Tightly scoped implementation planning with a panel of specialist engineer subagents",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "source": "./plugins/quick-plan",
       "author": {
         "name": "PBD",
@@ -71,7 +71,7 @@
     {
       "name": "blank-slate-review",
       "description": "Multi-perspective codebase review with severity-classified findings and holistic remediation",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "source": "./plugins/blank-slate-review",
       "author": {
         "name": "PBD",

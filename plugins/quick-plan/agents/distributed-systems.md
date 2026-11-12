@@ -2,7 +2,6 @@
 name: distributed-systems
 description: Use when investigating codebase structure for planning, evaluating how proposed changes interact with existing modules and external services, or assessing cross-boundary data flow and consistency implications
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 
 # Distributed Systems Engineer

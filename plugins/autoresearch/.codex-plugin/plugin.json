@@ -1,6 +1,6 @@
 {
   "name": "autoresearch",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Autonomous experiment loop for optimizing any measurable target.",
   "author": {
     "name": "PBD",

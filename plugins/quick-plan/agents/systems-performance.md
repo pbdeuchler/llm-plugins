@@ -2,7 +2,6 @@
 name: systems-performance
 description: Use when evaluating implementation approaches for performance characteristics, resource usage, memory allocation patterns, cache behavior, or hot path efficiency during planning
 tools: Read, Grep, Glob, Bash
-model: sonnet
 ---
 
 # Systems Performance Engineer
